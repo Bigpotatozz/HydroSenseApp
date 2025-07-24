@@ -1,3 +1,103 @@
+
+<p-dialog header="Editar usuario" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-8">Update your information.</span>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="nombre" class="font-semibold w-24">Nombre</label>
+        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="nombre" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="apellidoPaterno" class="font-semibold w-24">Apellido p</label>
+        <input pInputText id="apellidoPaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoPaterno"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+        <label for="apellidoMaterno" class="font-semibold w-24">Apellido m</label>
+        <input pInputText id="apellidoMaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoMaterno"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="edad" class="font-semibold w-24">Edad</label>
+        <input pInputText  type="number" id="edad" class="flex-auto" autocomplete="off" [(ngModel)]="edad"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="pais" class="font-semibold w-24">Pais</label>
+        <input pInputText id="pais" class="flex-auto" autocomplete="off" [(ngModel)]="pais"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="correo" class="font-semibold w-24">Correo</label>
+        <input pInputText id="correo" class="flex-auto" autocomplete="off" [(ngModel)]="correo"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="contrasenia" class="font-semibold w-24">Contraseña</label>
+        <input pInputText id="contrasenia" class="flex-auto" autocomplete="off" [(ngModel)]="contrasenia"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="telefono" class="font-semibold w-24">Telefono</label>
+        <input pInputText id="telefono" class="flex-auto" autocomplete="off" [(ngModel)]="telefono"/>
+    </div>
+    
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button label="Save"  (click)="editarUsuario()" />
+    </div>
+</p-dialog>
+
+
+<!--DIALOGO DE REGISTRO-->
+
+<p-dialog header="Agregar usuario" [(visible)]="visible2" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-8">Update your information.</span>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="nombre" class="font-semibold w-24">Nombre</label>
+        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="nombre" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="apellidoPaterno" class="font-semibold w-24">Apellido p</label>
+        <input pInputText id="apellidoPaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoPaterno"/>
+    </div>
+
+    <div class="flex items-center gap-4 mb-8">
+        <label for="apellidoMaterno" class="font-semibold w-24">Apellido m</label>
+        <input pInputText id="apellidoMaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoMaterno"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="edad" class="font-semibold w-24">Edad</label>
+        <input pInputText  type="number" id="edad" class="flex-auto" autocomplete="off" [(ngModel)]="edad"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="pais" class="font-semibold w-24">Pais</label>
+        <input pInputText id="pais" class="flex-auto" autocomplete="off" [(ngModel)]="pais"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="correo" class="font-semibold w-24">Correo</label>
+        <input pInputText id="correo" class="flex-auto" autocomplete="off" [(ngModel)]="correo"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="contrasenia" class="font-semibold w-24">Contraseña</label>
+        <input pInputText id="contrasenia" class="flex-auto" autocomplete="off" [(ngModel)]="contrasenia"/>
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+        <label for="telefono" class="font-semibold w-24">Telefono</label>
+        <input pInputText id="telefono" class="flex-auto" autocomplete="off" [(ngModel)]="telefono"/>
+    </div>
+     <div class="flex items-center gap-4 mb-8">
+        <label for="nivel" class="font-semibold w-24">Nivel</label>
+        <input pInputText id="nivel" class="flex-auto" autocomplete="off" [(ngModel)]="nivel"/>
+    </div>
+
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible2 = false" />
+        <p-button label="Save" (onClick)="agregarUsuario()" />
+    </div>
+</p-dialog>
+
+
+
+
+<div class="flex justify-content-end mb-4">
+    <button pButton type="button" label="Registrar usuario" class="p-button-success" (click)="showDialog2()"></button>
+</div>
+
 <p-table [value]="usuarios" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
     [rowsPerPageOptions]="[5, 10, 20]">
     <ng-template #header>
@@ -17,8 +117,8 @@
             <td>{{ user.nivel }}</td>
             <td>
                 <div class="flex justify-content-center">
-                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-info"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger"></button>
+                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-info" (click)="showDialog(user)"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="eliminarUsuario(user.idUsuario)"></button>
                 </div>
 
             </td>
