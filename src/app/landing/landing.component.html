@@ -1,1 +1,137 @@
-<p>landing works!</p>
+<div class="p-5">
+
+    <p-toolbar [style]="{ 'border-radius': '3rem', 'padding': '1rem 1rem 1rem 1.5rem' }">
+        <ng-template #start>
+            <div class="flex items-center gap-2">
+                <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    style="width: 2rem; margin-right: 1rem">
+                    <path d="..." fill="var(--p-primary-color)" />
+                    <mask id="mask0_1_52" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="31"
+                        height="33"></mask>
+                </svg>
+                <a href="#inicio" class="p-button p-component p-button-text"
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    Inicio
+                </a>
+
+                <a href="#productos" class="p-button p-component p-button-text"
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    Productos
+                </a>
+
+                <a href="#contacto" class="p-button p-component p-button-text"
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    Contacto
+                </a>
+
+                <a href="#nosotros" class="p-button p-component p-button-text"
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    Conócenos
+                </a>
+
+
+            </div>
+        </ng-template>
+
+        <ng-template #end>
+            <div class="flex items-center gap-2">
+                <p-button label="Iniciar sesion" severity="contrast" size="small" [routerLink]="['/login']" />
+                <p-avatar image="hydrosense.png" [style]="{ width: '32px', height: '32px', background: 'white' }" />
+            </div>
+        </ng-template>
+    </p-toolbar>
+</div>
+
+
+
+
+<div class="content p-20">
+
+
+    <div id="inicio">
+        <app-inicio></app-inicio>
+    </div>
+
+
+    <div id="nosotros">
+        <app-nosotros></app-nosotros>
+    </div>
+
+
+    <div id="preguntas">
+        <app-preguntas></app-preguntas>
+    </div>
+
+
+
+    <div class="opiniones flex gap-7 justify-center" id="opiniones">
+        <app-opinion [nombre]="'Juanito Alcachofa'" [calificacion]="5"
+            [descripcion]="'Producto 100 funcional y de gran ayuda'">
+        </app-opinion>
+
+        <app-opinion [nombre]="'María López'" [calificacion]="4"
+            [descripcion]="'Muy útil y fácil de usar, ha mejorado mucho la gestión del agua en nuestra comunidad.'">
+        </app-opinion>
+
+        <app-opinion [nombre]="'Carlos Sánchez'" [calificacion]="5"
+            [descripcion]="'La precisión es excelente y el equipo de soporte siempre responde rápidamente.'">
+        </app-opinion>
+    </div>
+
+    <div id="productos">
+        <app-productos></app-productos>
+    </div>
+
+
+    <div id="contacto">
+        <app-contacto></app-contacto>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<footer class="footer p-4">
+
+    <div class="footer-content flex justify-center items-center gap-4">
+        <div class="footer-text">
+            <p>© 2023 HydroSense. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#">Política de privacidad</a>
+            <span>|</span>
+            <a href="#">Términos de servicio</a>
+        </div>
+
+        <div class="footer-social">
+            <a href="#"><i class="pi pi-facebook p-5"></i></a>
+            <a href="#"><i class="pi pi-twitter p-5"></i></a>
+            <a href="#"><i class="pi pi-instagram p-5"></i></a>
+        </div>
+    </div>
+
+
+    <div class="container-contacto">
+        <h1>¡Envíanos tus datos y te atenderemos!</h1>
+        <form class="form-contacto">
+            <label for="nombre" class="label-contacto">Nombre</label>
+            <input id="nombre" name="nombre" type="text" placeholder="Ingresa tu nombre" class="input-contacto">
+
+            <label for="email" class="label-contacto">Email</label>
+            <input id="email" name="email" type="email" placeholder="Ingresa tu email" class="input-contacto">
+
+            <label for="telefono" class="label-contacto">Teléfono</label>
+            <input id="telefono" name="telefono" type="text" placeholder="Ingresa tu teléfono" class="input-contacto">
+
+            <label for="asunto" class="label-contacto">Asunto</label>
+            <input id="asunto" name="asunto" type="text" placeholder="Ingresa el asunto" class="input-contacto">
+
+            <button type="submit" class="btn-contacto">Enviar</button>
+        </form>
+    </div>
+
+</footer>

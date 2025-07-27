@@ -1,0 +1,22 @@
+
+.contentH {
+    padding: 20px;
+}
+.contentH h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.contentH p {
+    font-size: 18px;
+    text-align: justify;
+}
+
+.imgH img {
+    background: white;
+    border-radius: 30px;
+}
+
+.imgH{
+    min-width: 50%;
+}

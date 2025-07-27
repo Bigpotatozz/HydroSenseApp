@@ -1,0 +1,38 @@
+.opinion-container {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid #333;
+  border-left: 4px solid #00d4aa;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opinion-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  border-left-color: #00f5cc;
+}
+
+.opinion-container h1 {
+  margin: 0 0 8px 0;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.opinion-container p:nth-child(2) {
+  color: #ffd700;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.opinion-container p:last-child {
+  color: #b0b0b0;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
