@@ -3,6 +3,8 @@ import { LandingComponent } from './landing/landing.component';
 import { HomeComponent } from './home/home.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { LoginComponent } from './login/login.component';
+import { PanelClientesComponent } from './panel-clientes/panel-clientes.component';
+import { RoleGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -11,13 +13,21 @@ export const routes: Routes = [
 
 
     {
-        path: 'home', component: HomeComponent,
+
+        path: 'home', 
+        component: HomeComponent,
+        canActivate: [RoleGuard],
+        data: {roles: ['1']},
+        
         children: [
              {path: 'usuarios', component: UsuariosComponent}
         ]
     },
     {
         path: 'login', component: LoginComponent
+    },
+    {
+        path: 'panelClientes', component: PanelClientesComponent
     }
    
 ];

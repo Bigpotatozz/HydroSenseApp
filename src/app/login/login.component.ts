@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginDto } from '../dto/usuarios/login.dto';
 import { LoginService } from '../services/login.service';
 import { LoginResponse } from '../dto/usuarios/loginResponse.dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +14,10 @@ import { LoginResponse } from '../dto/usuarios/loginResponse.dto';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-
   token: string = "";
 
 
-  constructor(private loginService: LoginService){}
+  constructor(private loginService: LoginService, private router: Router){}
 
 
   login(){
@@ -26,12 +26,20 @@ export class LoginComponent {
 
     this.loginService.login(loginDto).subscribe({
       next: (data: any) => {
-        
         this.token = data.data.token;
-        console.log(this.token);
+        localStorage.setItem("usuario", JSON.stringify(data.data));
+        console.log(data);
+
+        if(data.data.nivel == "1" ){
+          this.router.navigate(['/home']);
+        }else{
+          this.router.navigate(['/panelClientes']);
+        }
+        
       },
       error: (error) => {
         console.error(error)
+        alert("Correo o contraseña incorrectos")
       }
     });
 
