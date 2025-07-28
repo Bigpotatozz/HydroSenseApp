@@ -1,1 +1,36 @@
-<p>login works!</p>
+<section class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Iniciar Sesión</h1>
+      <h2 class="brand">HidroSense</h2>
+    </div>
+
+    <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="input-group">
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          [(ngModel)]="email"
+          placeholder="Correo electrónico" 
+          required />
+      </div>
+        
+      <div class="input-group">
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          [(ngModel)]="password"
+          placeholder="Contraseña" 
+          required />
+      </div>
+
+      <button type="submit" class="btn" [disabled]="!loginForm.valid">
+        Iniciar Sesión
+      </button>
+    </form>
+
+
+  </div>
+</section>
