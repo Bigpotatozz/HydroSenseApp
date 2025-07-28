@@ -134,6 +134,48 @@
     margin-left: 10px;
 }
 
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.quantity-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.order-form input[type="number"],
+.order-form input[type="email"],
+.order-form input[type="text"] {
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1.8px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.order-form input:focus {
+  outline: none;
+  border-color: #0077cc;
+  box-shadow: 0 0 5px rgba(0, 119, 204, 0.5);
+}
+
+.order-form input::placeholder {
+  color: #aaa;
+}
+
+
 @media (max-width: 950px) {
   .producto-container {
     flex-direction: column;

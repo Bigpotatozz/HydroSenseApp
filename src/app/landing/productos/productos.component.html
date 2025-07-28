@@ -4,18 +4,31 @@
   </figure>
 
   <div class="content">
-    <h1>Productos / Solicitar cotizacion</h1>
+    <h1>Productos / Solicitar cotización</h1>
     <h2 class="product-title">Sensor de medición de calidad del agua</h2>
-    <h3 class="product-brand">Hidronsense</h3>
-    
-    <form class="order-form" onsubmit="event.preventDefault();">
-      <label for="quantity" class="quantity-label">Cantidad a cotizar:</label>
-      <input type="number" id="quantity" name="quantity" min="1" value="1" required />
-      <button type="submit" class="btn">Cotizar</button>
+    <h3 class="product-brand">HidroSense</h3>
+    <form class="order-form" (ngSubmit)="onSubmit()" #cotizacionForm="ngForm">
+      <div class="input-group">
+        <label for="quantity" class="quantity-label">Cantidad a cotizar:</label>
+        <input type="number" id="quantity" name="quantity" [(ngModel)]="cantidad" min="1" value="1" required />
+      </div>
+
+      <div class="input-group">
+        <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Correo electrónico" required />
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="name" name="name" [(ngModel)]="nombre" placeholder="Nombre completo" required />
+      </div>
+
+      <button type="submit" class="btn" [disabled]="!cotizacionForm.valid">
+        Cotizar
+      </button>
     </form>
-    
+
     <p class="product-description">
-      Sensor que mide el pH, turbidez, esto con la finalidad de determinar si el agua es adecuada para su uso.
+      Sensor avanzado que mide pH, turbidez y otros parámetros críticos para determinar si el agua es adecuada para su
+      uso.
     </p>
   </div>
 </section>
