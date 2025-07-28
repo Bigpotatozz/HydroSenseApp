@@ -27,7 +27,10 @@ export const routes: Routes = [
         path: 'login', component: LoginComponent
     },
     {
-        path: 'panelClientes', component: PanelClientesComponent
+        path: 'panelClientes', 
+        component: PanelClientesComponent,
+        canActivate: [RoleGuard],
+        data: {roles: ['2']},
     }
    
 ];
