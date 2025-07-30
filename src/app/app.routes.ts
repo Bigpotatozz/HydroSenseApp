@@ -5,6 +5,13 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { LoginComponent } from './login/login.component';
 import { PanelClientesComponent } from './panel-clientes/panel-clientes.component';
 import { RoleGuard } from './guards/auth.guard';
+import { ComentariosComponent } from './comentarios/comentarios.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { DetalleProveedorComponent } from './proveedores/detalle-proveedor.component';
+import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
+import { ProduccionComponent } from './produccion/produccion.component';
+import { VentaComponent } from './ventas/ventas.component';
+
 
 export const routes: Routes = [
     {
@@ -20,7 +27,18 @@ export const routes: Routes = [
         data: {roles: ['1']},
         
         children: [
-             {path: 'usuarios', component: UsuariosComponent}
+          { path: 'usuarios', component: UsuariosComponent },
+          { path: 'comentarios', component: ComentariosComponent },
+          { path: 'proveedores', component: ProveedoresComponent },
+          {
+            path: 'proveedores/detalle', 
+            component: DetalleProveedorComponent,
+            canActivate: [RoleGuard], 
+            data: { roles: ['1'] } 
+          },
+          { path: 'cotizaciones', component: CotizacionesComponent },
+          { path: 'produccion', component: ProduccionComponent },
+          { path: 'ventas', component: VentaComponent }, 
         ]
     },
     {
@@ -30,7 +48,8 @@ export const routes: Routes = [
         path: 'panelClientes', 
         component: PanelClientesComponent,
         canActivate: [RoleGuard],
-        data: {roles: ['2']},
+      data: { roles: ['2'] },
+
     }
    
 ];

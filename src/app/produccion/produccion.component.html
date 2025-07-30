@@ -1,0 +1,44 @@
+<div class="p-6 space-y-6">
+  <div *ngFor="let sistema of sistemas" class="bg-white p-6 rounded-lg shadow-md mb-6 relative">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ sistema.nombreSistema }}</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+      <div class="md:col-span-1 border border-gray-300 p-4 flex justify-center items-center rounded-lg">
+        <img [src]="imagenSistema" alt="Imagen del Sistema" class="max-w-full h-auto object-contain">
+      </div>
+
+      <div class="md:col-span-2">
+        <h2 class="text-xl font-semibold text-gray-700 mb-3">Componentes Requeridos:</h2>
+        <ul class="list-disc pl-5 space-y-2">
+          <li *ngFor="let componente of sistema.componentes" class="text-gray-600">
+            <span class="font-medium">{{ componente.nombreComponente }}</span>: Requerido {{ componente.cantidadRequerida }} | Disponible en inventario {{ componente.cantidadDisponible }}
+            <span *ngIf="componente.cantidadDisponible < componente.cantidadRequerida" class="text-red-500 font-bold ml-2">(¡Insuficiente!)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center text-lg">
+      <div class="text-gray-700 mb-2 md:mb-0">
+        <span class="font-semibold">Disponible(s):</span> {{ sistema.sistemasDisponibles }}
+      </div>
+      <div class="text-gray-700 md:absolute md:left-1/2 md:-translate-x-1/2 md:bottom-4 md:text-center w-full md:w-auto">
+        <span class="font-semibold">Costo de producción:</span> ${{ sistema.costoTotalProduccion | number:'1.2-2' }}
+      </div>
+    </div>
+
+    <div class="absolute bottom-4 right-4 flex space-x-2">
+      <button *ngIf="canProduce(sistema)"
+              (click)="producir(sistema.idSistema)"
+              class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-75">
+        Producir
+      </button>
+
+      <button *ngIf="needsPieces(sistema)"
+              (click)="solicitarPiezas()"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+        Solicitar Piezas
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4">Comentarios</h1>
+  <div *ngFor="let comentario of comentarios" class="comentario-card">
+    
+    <p class="comentario-usuario">
+      {{ comentario.nombreUsuario }} comentó :
+    </p>
+    <p class="comentario-texto">{{ comentario.comentario }}</p>
+    <textarea [(ngModel)]="respuestas[comentario.nombreUsuario]"
+              class="respuesta-input"
+              rows="2"
+              placeholder="Escribe una respuesta (simulada)..."></textarea>
+  </div>
+</div>
+s

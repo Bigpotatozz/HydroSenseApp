@@ -1,0 +1,27 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4">[{{ proveedor }}] [{{ contacto }}]</h1>
+
+  <div *ngFor="let c of componentes" class="flex items-center justify-between border rounded-xl px-4 py-3 mb-3 shadow-md">
+    <div class="flex-1">
+      <div class="text-lg font-medium">{{ c.nombreComponente }}</div>
+      <div class="text-sm text-gray-500">Precio unitario</div>
+      <div class="text-md font-semibold">${{ c.precio }}</div>
+      <div class="text-sm text-gray-500">En existencia</div>
+      <div class="text-md font-semibold">{{ c.cantidad }}</div>
+    </div>
+
+    <button (click)="toggleFormulario(c.idComponente)" class="bg-green-700 text-white px-4 py-2 rounded-full text-lg">+</button>
+  </div>
+
+  <div *ngFor="let c of componentes">
+    <div *ngIf="mostrarFormulario[c.idComponente]" class="mb-4 border rounded-xl p-4 bg-gray-100">
+      <label class="block mb-1 text-sm">Cantidad a agregar</label>
+      <input type="number" [(ngModel)]="cantidades[c.idComponente]" class="w-full p-2 rounded border mb-3" />
+
+      <label class="block mb-1 text-sm">Precio de adquisición</label>
+      <input type="number" [(ngModel)]="precios[c.idComponente]" class="w-full p-2 rounded border mb-3" />
+
+      <button (click)="actualizarInventario(c.idComponente)" class="bg-blue-600 text-white px-4 py-2 rounded">Actualizar</button>
+    </div>
+  </div>
+</div>
