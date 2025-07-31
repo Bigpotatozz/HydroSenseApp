@@ -1,0 +1,36 @@
+<div class="dashboard-container">
+  <h2>HidroSense Dashboard {{ selectedAnio }}-{{ meses[selectedMes - 1].nombre }}</h2>
+
+  <div class="filters">
+    <div class="filter-group">
+      <label for="mesSelect">Mes:</label>
+      <select id="mesSelect" [(ngModel)]="selectedMes" (change)="onFilterChange()">
+        <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="anioSelect">Año:</label>
+      <select id="anioSelect" [(ngModel)]="selectedAnio" (change)="onFilterChange()">
+        <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Productos vendidos</h3>
+      <div id="productosChart" class="google-chart"></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Mejores vendedores</h3>
+      <div id="vendedoresChart" class="google-chart"></div>
+    </div>
+
+    <div class="chart-card large-chart">
+      <h3>Ventas del año</h3>
+      <div id="ventasAnualesChart" class="google-chart"></div>
+    </div>
+  </div>
+</div>

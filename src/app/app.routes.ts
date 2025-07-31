@@ -12,6 +12,8 @@ import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
 import { ProduccionComponent } from './produccion/produccion.component';
 import { VentaComponent } from './ventas/ventas.component';
 import { InventarioComponent } from './inventario/inventario.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 export const routes: Routes = [
     {
@@ -39,7 +41,8 @@ export const routes: Routes = [
           { path: 'cotizaciones', component: CotizacionesComponent },
           { path: 'produccion', component: ProduccionComponent },
           { path: 'ventas', component: VentaComponent },
-          { path: 'inventario', component: InventarioComponent}
+          { path: 'inventario', component: InventarioComponent },
+          { path: 'dashboard', component: DashboardComponent }
         ]
     },
     {
