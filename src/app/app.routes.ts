@@ -11,7 +11,7 @@ import { DetalleProveedorComponent } from './proveedores/detalle-proveedor.compo
 import { CotizacionesComponent } from './cotizaciones/cotizaciones.component';
 import { ProduccionComponent } from './produccion/produccion.component';
 import { VentaComponent } from './ventas/ventas.component';
-
+import { InventarioComponent } from './inventario/inventario.component';
 
 export const routes: Routes = [
     {
@@ -38,7 +38,8 @@ export const routes: Routes = [
           },
           { path: 'cotizaciones', component: CotizacionesComponent },
           { path: 'produccion', component: ProduccionComponent },
-          { path: 'ventas', component: VentaComponent }, 
+          { path: 'ventas', component: VentaComponent },
+          { path: 'inventario', component: InventarioComponent}
         ]
     },
     {

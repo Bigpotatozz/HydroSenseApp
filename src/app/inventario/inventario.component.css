@@ -1,0 +1,68 @@
+/* src/app/inventario/inventario.component.css */
+.inventario-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.component-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.component-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.component-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.component-name {
+  font-weight: bold;
+  color: #0056b3;
+  font-size: 1.1em;
+}
+
+.component-quantity, .component-price {
+  color: #555;
+  font-size: 0.9em;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+  button:hover {
+    background-color: #218838;
+  }

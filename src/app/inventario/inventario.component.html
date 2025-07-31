@@ -1,0 +1,18 @@
+<div class="inventario-container">
+  <h2>Inventario de Componentes</h2>
+
+  <div *ngIf="componentes.length === 0">
+    <p>No hay componentes en el inventario.</p>
+  </div>
+
+  <div *ngIf="componentes.length > 0" class="component-list">
+    <div *ngFor="let componente of componentes" class="component-item">
+      <div class="component-info">
+        <span class="component-name">{{ componente.nombreComponente }}</span>
+        <span class="component-quantity">Cantidad: {{ componente.cantidad }}</span>
+        <span class="component-price">Precio: ${{ componente.precio | number:'1.2-2' }}</span>
+      </div>
+      <button (click)="comprarMas()">+</button>
+    </div>
+  </div>
+</div>
