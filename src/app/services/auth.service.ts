@@ -34,6 +34,10 @@ export class AuthService {
     return this.currentUserSubject.value ? this.currentUserSubject.value.nivel : null;
   }
 
+  getCurrentUserToken(): string | null {
+    return this.currentUserSubject.value?.token || null;
+  }
+
   login(userData: UserData): void {
     localStorage.setItem('usuario', JSON.stringify(userData));
     this.currentUserSubject.next(userData);

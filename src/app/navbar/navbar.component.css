@@ -1,83 +1,74 @@
-/* Estilos para el p-toolbar */
 p-toolbar {
   border-radius: 0 !important;
-  background-color: #000000 !important; /* Fondo negro */
+  background-color: #000000 !important;
   padding: 1rem 1rem 1rem 1.5rem !important;
   width: 100% !important;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  /* IMPORTANTE: Añadir overflow-x si el contenido del toolbar puede exceder el ancho */
   overflow-x: auto;
 }
 
-/* Estilos para el menubar personalizado (contenedor principal de las opciones) */
+
 .custom-menubar.p-menubar {
-  background-color: #000000 !important; /* Fondo negro para la barra del menú principal */
-  border: none !important; /* Elimina los bordes delgados */
+  background-color: #000000 !important; 
+  border: none !important; 
   padding: 0 !important;
 }
 
-/* Estilos para la lista UL que contiene los elementos principales del menú */
 .custom-menubar .p-menubar-root-list {
-  background-color: #000000 !important; /* Asegura el fondo negro para la lista raíz */
-  border: none !important; /* Elimina cualquier borde de la lista */
+  background-color: #000000 !important;
+  border: none !important; 
 }
 
-  /* Estilos para los elementos principales del menú (la 'caja' de cada opción como 'Ventas', 'Usuario') */
   .custom-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content {
-    background-color: #000000 !important; /* Fondo negro para el contenido de cada ítem principal */
-    transition: background-color 0.3s ease; /* Transición para el hover */
+    background-color: #000000 !important; 
+    transition: background-color 0.3s ease; 
   }
 
-    /* Estilos para los enlaces de texto de las opciones principales */
     .custom-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content > .p-menuitem-link {
-      color: #fcfde2 !important; /* Color de texto para las opciones principales */
+      color: #fcfde2 !important;
       font-weight: 600;
       padding: 0.75rem 1rem;
       border-radius: 4px;
     }
 
-    /* Estilos al pasar el ratón sobre las opciones principales */
     .custom-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content:hover {
-      background-color: rgba(252, 253, 226, 0.1) !important; /* Fondo ligero al pasar el ratón */
-      color: #fcfde2 !important; /* Asegura el color del texto al pasar el ratón */
+      background-color: rgba(252, 253, 226, 0.1) !important; 
+      color: #fcfde2 !important;
     }
 
-    /* Estilos para los iconos de las opciones principales */
     .custom-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content > .p-menuitem-link .p-menuitem-icon {
-      color: #fcfde2 !important; /* Color del icono principal */
+      color: #fcfde2 !important; 
     }
 
-    /* Estilos para las flechas de los desplegables (PrimeIcons) */
     .custom-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content > .p-menuitem-link .p-submenu-icon {
-      color: #fcfde2 !important; /* Color de la flecha del submenú */
+      color: #fcfde2 !important; 
     }
 
-/* Estilos para los submenús (desplegables) */
+
 .custom-menubar .p-submenu-list {
-  background-color: #333333 !important; /* Fondo más oscuro para los submenús */
-  border: none !important; /* Elimina bordes delgados del submenú */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para que destaque */
+  background-color: #333333 !important;
+  border: none !important; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
 .custom-menubar .p-menuitem-link {
-  color: #fcfde2 !important; /* Texto de los elementos del submenú */
+  color: #fcfde2 !important; 
   background-color: transparent !important;
   font-weight: normal;
 }
 
   .custom-menubar .p-menuitem-link:hover {
-    background-color: rgba(252, 253, 226, 0.15) !important; /* Hover para elementos del submenú */
+    background-color: rgba(252, 253, 226, 0.15) !important; 
     color: #fcfde2 !important;
   }
 
-/* Estilos para el botón del nombre de usuario invertido */
 .p-button-usuario.p-button {
-  background-color: #fcfde2 !important; /* Fondo blanco crema */
-  color: #000000 !important; /* Texto negro */
-  border-color: #fcfde2 !important; /* Borde del mismo color */
+  background-color: #fcfde2 !important;
+  color: #000000 !important; 
+  border-color: #fcfde2 !important; 
   font-weight: 600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -99,3 +90,4 @@ p-toolbar {
 
   .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-content > .p-menuitem-link {
     color: #fcfde2 !important;
+  }

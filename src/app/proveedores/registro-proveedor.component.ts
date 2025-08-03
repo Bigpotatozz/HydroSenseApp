@@ -7,7 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-registro-proveedor',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule], 
+  imports: [CommonModule, FormsModule, HttpClientModule],
+  templateUrl: './registro-proveedor.component.html',
   styleUrls: ['./registro-proveedor.component.css']
 })
 export class RegistroProveedorComponent implements OnInit {
