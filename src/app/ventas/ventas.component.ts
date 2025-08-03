@@ -10,8 +10,8 @@ import { AuthService } from '../services/auth.service';
   selector: 'app-venta',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
-  templateUrl: './ventas.component.html', // Corregido el nombre del template
-  styleUrls: ['./ventas.component.css'] // Corregido el nombre del estilo
+  templateUrl: './ventas.component.html', 
+  styleUrls: ['./ventas.component.css'] 
 })
 export class VentaComponent implements OnInit {
   usuarios: UsuarioDTO[] = [];

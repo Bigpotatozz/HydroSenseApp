@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ProduccionService } from '../services/produccion.service';
 import { SistemaProduccionDTO, ApiResponse } from '../dto/produccion/showSistemasProduccion.dto';
-import { Router } from '@angular/router'; // Importa Router
-
+import { Router } from '@angular/router'; 
 @Component({
   selector: 'app-produccion',
   standalone: true,
@@ -18,7 +17,7 @@ export class ProduccionComponent implements OnInit {
 
   constructor(
     private produccionService: ProduccionService,
-    private router: Router // Inyecta Router
+    private router: Router 
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +40,7 @@ export class ProduccionComponent implements OnInit {
       next: (res: ApiResponse<any>) => {
         if (res.success) {
           alert(res.message);
-          this.cargarSistemas(); // Vuelve a cargar los sistemas para actualizar la pantalla
+          this.cargarSistemas(); 
         } else {
           alert(`Error: ${res.message}`);
         }
@@ -55,15 +54,13 @@ export class ProduccionComponent implements OnInit {
   }
 
   solicitarPiezas(): void {
-    this.router.navigate(['/home/proveedores']); // Navega a la ruta de proveedores
+    this.router.navigate(['/home/proveedores']); 
   }
 
-  // Método para verificar si se puede producir (todos los componentes tienen suficiente inventario)
   canProduce(sistema: SistemaProduccionDTO): boolean {
     return sistema.componentes.every(c => c.cantidadDisponible >= c.cantidadRequerida);
   }
 
-  // Método para verificar si se necesitan piezas (algún componente no tiene suficiente inventario)
   needsPieces(sistema: SistemaProduccionDTO): boolean {
     return sistema.componentes.some(c => c.cantidadDisponible < c.cantidadRequerida);
   }

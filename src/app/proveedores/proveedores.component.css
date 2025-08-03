@@ -1,28 +1,27 @@
-/* Estilo base de la tarjeta */
+
 .proveedor-card {
   background: white;
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: relative; /* Necesario para posicionamiento absoluto del botón */
+  position: relative; 
 }
 
-/* Estilo del botón */
 .solicitar-btn {
   position: absolute;
   top: 12px;
   right: 12px;
   padding: 4px 12px;
-  background-color: #3b82f6; /* Azul Tailwind */
+  background-color: #3b82f6;
   color: white;
   border: none;
   border-radius: 4px;
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
   .solicitar-btn:hover {
-    background-color: #2563eb; /* Azul más oscuro al hover */
+    background-color: #2563eb;
   }

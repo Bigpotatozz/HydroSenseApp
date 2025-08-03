@@ -1,0 +1,51 @@
+<div class="registro-proveedor-container">
+  <h2>Registro de proveedores</h2>
+
+  <div class="form-section">
+    <div class="form-group">
+      <label for="empresaProveedor">Empresa del proveedor</label>
+      <input type="text" id="empresaProveedor" [(ngModel)]="nombreProveedor" required>
+    </div>
+
+    <div class="form-group">
+      <label for="nombreContacto">Nombre del contacto</label>
+      <input type="text" id="nombreContacto" [(ngModel)]="nombreContacto" required>
+    </div>
+  </div>
+
+  <h3>Componentes</h3>
+  <div class="componentes-list">
+    <div *ngFor="let componente of componentes; let i = index" class="component-item">
+      <div class="form-group">
+        <label for="nombreComponente{{i}}">Nombre del componente</label>
+        <input type="text" id="nombreComponente{{i}}" [(ngModel)]="componente.nombreComponente" required>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion{{i}}">Descripción</label>
+        <input type="text" id="descripcion{{i}}" [(ngModel)]="componente.descripcion">
+      </div>
+
+      <div class="form-group">
+        <label for="precioCompra{{i}}">Precio de compra</label>
+        <input type="number" id="precioCompra{{i}}" [(ngModel)]="componente.precio" required min="0">
+      </div>
+
+      <div class="form-group">
+        <label for="cantidadIngresada{{i}}">Cantidad ingresada</label>
+        <input type="number" id="cantidadIngresada{{i}}" [(ngModel)]="componente.cantidad" required min="0">
+      </div>
+
+      <div class="action-buttons">
+        <button type="button" (click)="agregarComponente()" class="btn btn-add">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button type="button" (click)="eliminarComponente(i)" class="btn btn-remove" *ngIf="componentes.length > 1">
+          <i class="fas fa-minus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" (click)="registrarProveedor()" class="btn btn-primary-submit">Guardar</button>
+</div>

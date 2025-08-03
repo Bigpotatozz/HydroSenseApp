@@ -1,4 +1,3 @@
-/* src/app/dashboard/dashboard.component.css */
 .dashboard-container {
   padding: 20px;
   max-width: 1200px;
@@ -55,7 +54,7 @@ select {
 
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Ajusta minmax para mejor responsividad */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
   gap: 20px;
 }
 
@@ -68,8 +67,8 @@ select {
   flex-direction: column;
   align-items: center;
   position: relative;
-  overflow: hidden; /* Asegura que el contenido que pueda desbordarse se oculte */
-  min-height: 380px; /* Asegura un alto mínimo para las tarjetas de gráficos */
+  overflow: hidden;
+  min-height: 380px; 
 }
 
   .chart-card h3 {
@@ -81,7 +80,7 @@ select {
 
 .google-chart {
   width: 100%;
-  height: 300px; /* Altura fija para los gráficos */
+  height: 300px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,10 +88,9 @@ select {
 }
 
 .large-chart {
-  grid-column: 1 / -1; /* Ocupa todo el ancho disponible */
+  grid-column: 1 / -1; 
 }
 
-/* Puedes eliminar o ajustar la clase no-data-overlay si el mensaje de Google Charts es suficiente */
 .no-data-overlay {
   position: absolute;
   top: 0;

@@ -7,7 +7,7 @@ import { SistemaProduccionDTO, ApiResponse } from '../dto/produccion/showSistema
   providedIn: 'root'
 })
 export class ProduccionService {
-  private apiUrl = 'https://localhost:7160/api/Sistema'; // URL base para la API
+  private apiUrl = 'https://localhost:7160/api/Sistema'; 
 
   constructor(private http: HttpClient) { }
 

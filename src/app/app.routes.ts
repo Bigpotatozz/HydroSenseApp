@@ -13,6 +13,8 @@ import { ProduccionComponent } from './produccion/produccion.component';
 import { VentaComponent } from './ventas/ventas.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistroProveedorComponent } from './proveedores/registro-proveedor.component';
+
 
 
 export const routes: Routes = [
@@ -28,7 +30,8 @@ export const routes: Routes = [
         canActivate: [RoleGuard],
         data: {roles: ['1']},
         
-        children: [
+      children: [
+          { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
           { path: 'usuarios', component: UsuariosComponent },
           { path: 'comentarios', component: ComentariosComponent },
           { path: 'proveedores', component: ProveedoresComponent },
@@ -42,7 +45,8 @@ export const routes: Routes = [
           { path: 'produccion', component: ProduccionComponent },
           { path: 'ventas', component: VentaComponent },
           { path: 'inventario', component: InventarioComponent },
-          { path: 'dashboard', component: DashboardComponent }
+          { path: 'dashboard', component: DashboardComponent },
+          { path: 'registro-proveedor', component: RegistroProveedorComponent },
         ]
     },
     {

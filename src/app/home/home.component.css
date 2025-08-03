@@ -1,3 +1,16 @@
 .navbar-container {
     padding: 15px;
 }
+
+.main-content-background {
+
+  min-height: 100vh;
+  width: 100vw; 
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTArSqKAAzJirdpEK_ZxAJMIeBR1gZio45MCQ&s'); 
+  background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: 6rem; 
+  padding-bottom: 2rem;
+}

@@ -1,26 +1,19 @@
-<p-toolbar [style]="{ 'border-radius': '3rem', 'padding': '1rem 1rem 1rem 1.5rem' }">
-    <ng-template #start>
-        <div class="flex items-center gap-2">
-            <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 2rem; margin-right: 1rem">
-                <path d="..." fill="var(--p-primary-color)" />
-                <mask id="mask0_1_52" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="33"></mask>
-            </svg>
-            <button pButton type="button" label="Dashboard" [routerLink]="['/home/dashboard']" text plain></button>
-            <button pButton type="button" label="Usuarios" [routerLink]="['/home/usuarios']" text plain></button>
-            <p-button label="Comentarios" text plain />
-            <p-button label="Proveedores" text plain />
-            <p-button label="Compras" text plain />
-            <p-button label="Insumos" text plain />
-            <p-button label="Productos" text plain />
-            <p-button label="Ventas" text plain />
-        </div>
-    </ng-template>
+<p-toolbar [style]="{ 'border-radius': '0', 'padding': '1rem 1rem 1rem 1.5rem', 'background-color': '#000000', 'width': '100%', 'position': 'fixed', 'top': '0', 'left': '0', 'z-index': '1000' }">
+  <ng-template pTemplate="start">
+    <div class="flex items-center gap-2">
+      <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 2rem; margin-right: 1rem">
+        <path d="M15.5 0C6.93959 0 0 6.93959 0 15.5C0 19.8213 1.76104 23.7505 4.63969 26.6397L15.5 33L26.3603 26.6397C29.239 23.7505 31 19.8213 31 15.5C31 6.93959 24.0604 0 15.5 0ZM15.5 6C18.5376 6 21 8.46243 21 11.5C21 14.5376 18.5376 17 15.5 17C12.4624 17 10 14.5376 10 11.5C10 8.46243 12.4624 6 15.5 6ZM15.5 19.5C19.7825 19.5 23.5938 21.0503 25.5414 23.3283C25.9616 23.8209 26.0463 24.5204 25.7611 25.1054C25.4759 25.6904 24.9084 26.0691 24.2882 26.0691H7.71181C7.0916 26.0691 6.52414 25.6904 6.23894 25.1054C5.95374 24.5204 6.0384 23.8209 6.45856 23.3283C8.40625 21.0503 12.2175 19.5 15.5 19.5Z" fill="#fcfde2" />
+        <mask id="mask0_1_52" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="31" height="33"></mask>
+      </svg>
+      <p-menubar [model]="secciones" styleClass="custom-menubar"></p-menubar>
+    </div>
+  </ng-template>
 
-    <ng-template #end>
-        <div class="flex items-center gap-2">
-            <p-button label = "Cerrar sesion" icon="pi pi-sign-out"  severity="danger" (onClick)="cerrarSesion()"></p-button>
-            <p-button [label]="nombreUsuario" severity="contrast" size="small" />
-            <p-avatar image="hydrosense.png" [style]="{ width: '32px', height: '32px', background: 'white' }" />
-        </div>
-    </ng-template>
+  <ng-template pTemplate="end">
+    <div class="flex items-center gap-2">
+      <p-button label="Cerrar sesion" icon="pi pi-sign-out" severity="danger" (onClick)="cerrarSesion()"></p-button>
+      <p-button [label]="nombreUsuario" styleClass="p-button-usuario" size="small" />
+      <p-avatar image="hydrosense.png" [style]="{ width: '32px', height: '32px', background: '#fcfde2' }" />
+    </div>
+  </ng-template>
 </p-toolbar>

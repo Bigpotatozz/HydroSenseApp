@@ -1,5 +1,5 @@
 <div class="p-6">
-  <h1 class="text-2xl font-bold mb-4">[{{ proveedor }}] [{{ contacto }}]</h1>
+  <h1 class="text-2xl font-bold mb-4">{{ proveedor }} - {{ contacto }}</h1>
 
   <div *ngFor="let c of componentes" class="flex items-center justify-between border rounded-xl px-4 py-3 mb-3 shadow-md">
     <div class="flex-1">
@@ -14,14 +14,22 @@
   </div>
 
   <div *ngFor="let c of componentes">
-    <div *ngIf="mostrarFormulario[c.idComponente]" class="mb-4 border rounded-xl p-4 bg-gray-100">
-      <label class="block mb-1 text-sm">Cantidad a agregar</label>
-      <input type="number" [(ngModel)]="cantidades[c.idComponente]" class="w-full p-2 rounded border mb-3" />
+    <div *ngIf="mostrarFormulario[c.idComponente]" class="fixed inset-0 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative border border-gray-300">
+        <button (click)="toggleFormulario(c.idComponente)" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
 
-      <label class="block mb-1 text-sm">Precio de adquisición</label>
-      <input type="number" [(ngModel)]="precios[c.idComponente]" class="w-full p-2 rounded border mb-3" />
+        <h2 class="text-lg font-semibold mb-4">Agregar al inventario</h2>
 
-      <button (click)="actualizarInventario(c.idComponente)" class="bg-blue-600 text-white px-4 py-2 rounded">Actualizar</button>
+        <label class="block mb-1 text-sm">Cantidad a agregar</label>
+        <input type="number" [(ngModel)]="cantidades[c.idComponente]" class="w-full p-2 rounded border mb-3" />
+
+        <label class="block mb-1 text-sm">Precio de adquisición</label>
+        <input type="number" [(ngModel)]="precios[c.idComponente]" class="w-full p-2 rounded border mb-4" />
+
+        <button (click)="actualizarInventario(c.idComponente)" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
+          Actualizar
+        </button>
+      </div>
     </div>
   </div>
 </div>

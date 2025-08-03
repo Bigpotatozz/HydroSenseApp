@@ -1,4 +1,3 @@
-// En tu componente de proveedores (proveedores.component.ts)
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
