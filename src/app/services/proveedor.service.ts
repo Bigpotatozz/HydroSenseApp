@@ -21,9 +21,9 @@ export class ProveedorService {
     );
   }
   obtenerComponentesPorProveedor(idProveedor: number): Observable<any> {
-    const headers = { idProveedor: idProveedor.toString() };
-    return this.http.get<any>(`${this.url}/api/Proveedor/componentes-por-proveedor`, { headers });
+    return this.http.get<any>(`${this.url}/api/Proveedor/componentes-por-proveedor?idProveedor=${idProveedor}`);
   }
+
 
   actualizarInventario(dto: {
     idComponente: number;

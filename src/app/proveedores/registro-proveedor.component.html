@@ -1,51 +1,68 @@
 <div class="registro-proveedor-container">
   <h2>Registro de proveedores</h2>
 
-  <div class="form-section">
-    <div class="form-group">
-      <label for="empresaProveedor">Empresa del proveedor</label>
-      <input type="text" id="empresaProveedor" [(ngModel)]="nombreProveedor" required>
+  <form #proveedorForm="ngForm">
+    <div class="form-section">
+      <div class="form-group">
+        <label for="empresaProveedor">Empresa del proveedor</label>
+        <input type="text" id="empresaProveedor" [(ngModel)]="nombreProveedor" name="nombreProveedor" required
+               pattern="^[a-zA-Z0-9\s]*$"
+               title="Solo se permiten letras, números y espacios." />
+      </div>
+
+      <div class="form-group">
+        <label for="nombreContacto">Nombre del contacto</label>
+        <input type="text" id="nombreContacto" [(ngModel)]="nombreContacto" name="nombreContacto" required
+               pattern="^[a-zA-Z\s]*$"
+               title="Solo se permiten letras y espacios." />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="nombreContacto">Nombre del contacto</label>
-      <input type="text" id="nombreContacto" [(ngModel)]="nombreContacto" required>
+    <h3>Componentes</h3>
+    <div class="componentes-list">
+      <div *ngFor="let componente of componentes; let i = index" class="component-item">
+        <div class="form-group">
+          <label for="nombreComponente{{i}}">Nombre del componente</label>
+          <input type="text" id="nombreComponente{{i}}" [(ngModel)]="componente.nombreComponente" name="nombreComponente{{i}}" required
+                 pattern="^[a-zA-Z0-9\s]*$"
+                 title="Solo se permiten letras, números y espacios." />
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion{{i}}">Descripción</label>
+          <input type="text" id="descripcion{{i}}" [(ngModel)]="componente.descripcion" name="descripcion{{i}}" required
+                 pattern="^[a-zA-Z0-9\s.,]*$"
+                 title="Solo se permiten letras, números, espacios y los caracteres especiales . y ," />
+        </div>
+
+        <div class="form-group">
+          <label for="precioCompra{{i}}">Precio de compra</label>
+          <input type="number" id="precioCompra{{i}}" [(ngModel)]="componente.precio" name="precioCompra{{i}}" required min="0.01"
+                 title="El precio debe ser mayor a 0." />
+        </div>
+
+        <div class="form-group">
+          <label for="cantidadIngresada{{i}}">Cantidad ingresada</label>
+          <input type="number" id="cantidadIngresada{{i}}" [(ngModel)]="componente.cantidad" name="cantidadIngresada{{i}}" required min="1" step="1"
+                 title="Solo se permiten números enteros mayores a 0." />
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" (click)="agregarComponente()" class="btn btn-add">
+            <i class="fas fa-plus"></i>
+          </button>
+          <button type="button" (click)="eliminarComponente(i)" class="btn btn-remove" *ngIf="componentes.length > 1">
+            <i class="fas fa-minus"></i>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <h3>Componentes</h3>
-  <div class="componentes-list">
-    <div *ngFor="let componente of componentes; let i = index" class="component-item">
-      <div class="form-group">
-        <label for="nombreComponente{{i}}">Nombre del componente</label>
-        <input type="text" id="nombreComponente{{i}}" [(ngModel)]="componente.nombreComponente" required>
-      </div>
-
-      <div class="form-group">
-        <label for="descripcion{{i}}">Descripción</label>
-        <input type="text" id="descripcion{{i}}" [(ngModel)]="componente.descripcion">
-      </div>
-
-      <div class="form-group">
-        <label for="precioCompra{{i}}">Precio de compra</label>
-        <input type="number" id="precioCompra{{i}}" [(ngModel)]="componente.precio" required min="0">
-      </div>
-
-      <div class="form-group">
-        <label for="cantidadIngresada{{i}}">Cantidad ingresada</label>
-        <input type="number" id="cantidadIngresada{{i}}" [(ngModel)]="componente.cantidad" required min="0">
-      </div>
-
-      <div class="action-buttons">
-        <button type="button" (click)="agregarComponente()" class="btn btn-add">
-          <i class="fas fa-plus"></i>
-        </button>
-        <button type="button" (click)="eliminarComponente(i)" class="btn btn-remove" *ngIf="componentes.length > 1">
-          <i class="fas fa-minus"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <button type="button" (click)="registrarProveedor()" class="btn btn-primary-submit">Guardar</button>
+    <button type="button" (click)="registrarProveedor()" class="btn btn-primary-submit" [disabled]="!proveedorForm.valid">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
+      </svg>
+      Guardar
+    </button>
+  </form>
 </div>

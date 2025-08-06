@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,14 +32,20 @@ export class ProveedoresComponent implements OnInit {
       error: (err) => console.error('Error al obtener proveedores', err)
     });
   }
-
-  verDetalle(proveedor: ProveedorConComponentesDTO, id: number): void {
+  verDetalle(proveedor: ProveedorConComponentesDTO): void {
+    console.log(proveedor)
+    localStorage.setItem('proveedorSeleccionado', JSON.stringify(proveedor));
     this.router.navigate(['/home/proveedores/detalle'], {
       queryParams: {
-        id,
+        id: proveedor.idProveedor,
         proveedor: proveedor.nombreProveedor,
         contacto: proveedor.nombreContacto
       }
     });
+
+
+
+  
   }
+
 }

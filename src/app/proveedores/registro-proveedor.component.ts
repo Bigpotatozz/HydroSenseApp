@@ -40,6 +40,7 @@ export class RegistroProveedorComponent implements OnInit {
 
   registrarProveedor(): void {
     const proveedorData: ProveedorConComponentesDTO = {
+      idProveedor: 0, 
       nombreProveedor: this.nombreProveedor,
       nombreContacto: this.nombreContacto,
       componentes: this.componentes.filter(c => c.nombreComponente && c.cantidad > 0) 
