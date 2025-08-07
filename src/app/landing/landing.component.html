@@ -1,6 +1,6 @@
 <div class="p-5">
 
-    <p-toolbar [style]="{ 'border-radius': '3rem', 'padding': '1rem 1rem 1rem 1.5rem' }">
+    <p-toolbar [style]="{ 'border-radius': '20px', 'padding': '1rem 1rem 1rem 1.5rem' }">
         <ng-template #start>
             <div class="flex items-center gap-2">
                 <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -10,22 +10,22 @@
                         height="33"></mask>
                 </svg>
                 <a href="#inicio" class="p-button p-component p-button-text"
-                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem; color: white">
                     Inicio
                 </a>
 
                 <a href="#productos" class="p-button p-component p-button-text"
-                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;color: white">
                     Productos
                 </a>
 
                 <a href="#contacto" class="p-button p-component p-button-text"
-                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;color: white">
                     Contacto
                 </a>
 
                 <a href="#nosotros" class="p-button p-component p-button-text"
-                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;">
+                    style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem;color: white">
                     Conócenos
                 </a>
 
@@ -45,9 +45,20 @@
 
 
 
-<div class="content p-15">
+<div class="content p-5">
 
-     <div id="nosotros">
+
+    <div class="head">
+        <div class="glass-card">
+            <h1>Sistemas Inteligentes de Monitoreo de Agua</h1>
+            <h2>Hidrosense</h2>
+            <p>Tecnología avanzada que garantiza la pureza y calidad del agua en tiempo real</p>
+        </div>
+    </div>
+
+
+
+    <div id="nosotros">
         <app-nosotros></app-nosotros>
     </div>
 
@@ -64,7 +75,7 @@
 
 
     <div class="opiniones flex gap-7 justify-center" id="opiniones">
-       
+
         <div *ngFor="let comentario of comentariosMostrar" class="opinion-card">
             <app-opinion [nombre]="comentario.nombreUsuario" [descripcion]="comentario.comentario"></app-opinion>
         </div>
@@ -91,30 +102,33 @@
 
 
 <footer class="footer p-4 gap-10">
-  
 
-  <div class="footer-contactos">
-    <h2>Correos de contacto: </h2>
-    <ul>
-      <li><strong>Correo 1:</strong> <br> {{'ventashidronsense@gmail.com'}}</li>
-      <li><strong>Correo 2:</strong> <br>{{'oscarmancilla227@gmail.com'}}</li>
-      <li><strong>Correo 3:</strong> <br>{{'erickvillaseordavid@gmail.com'}}</li>
-      <li><strong>Correo 4:</strong> <br>{{'rp6245397@gmail.com'}}</li>
-    </ul>
-  </div>
 
-   <div class="footer-contactos">
-    <h2>Telefonos de contacto</h2>
-    <ul>
-      <li><strong>Teléfono:</strong> <br> 4775872265</li>
-      <li><strong>Teléfono:</strong> <br> 4776711854</li>
-      <li><strong>Teléfono:</strong> <br> 4791428209</li>
-    </ul>
-  </div>
+    <div class="footer-contactos">
+        <h2>Correos de contacto: </h2>
+        <ul>
+            <li><strong>Correo 1:</strong> <br> {{'ventashidronsense@gmail.com'}}</li>
+            <li><strong>Correo 2:</strong> <br>{{'oscarmancilla227@gmail.com'}}</li>
+            <li><strong>Correo 3:</strong> <br>{{'erickvillaseordavid@gmail.com'}}</li>
+            <li><strong>Correo 4:</strong> <br>{{'rp6245397@gmail.com'}}</li>
+        </ul>
+    </div>
 
-  <div class="footer-content  justify-center items-center gap-4">
- 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.226296332273!2d-101.58422372402234!3d21.063622086578896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b963652f40f0d%3A0xa7d88da0ad8eff8a!2sUniversidad%20Tecnol%C3%B3gica%20de%20Le%C3%B3n!5e0!3m2!1ses-419!2smx!4v1754542868726!5m2!1ses-419!2smx" width="500" height="300" style="border:1; border-radius: 1rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="footer-contactos">
+        <h2>Telefonos de contacto</h2>
+        <ul>
+            <li><strong>Teléfono:</strong> <br> 4775872265</li>
+            <li><strong>Teléfono:</strong> <br> 4776711854</li>
+            <li><strong>Teléfono:</strong> <br> 4791428209</li>
+        </ul>
+    </div>
 
-  </div>
+    <div class="footer-content  justify-center items-center gap-4">
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.226296332273!2d-101.58422372402234!3d21.063622086578896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b963652f40f0d%3A0xa7d88da0ad8eff8a!2sUniversidad%20Tecnol%C3%B3gica%20de%20Le%C3%B3n!5e0!3m2!1ses-419!2smx!4v1754542868726!5m2!1ses-419!2smx"
+            width="500" height="300" style="border:1; border-radius: 1rem;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
 </footer>
