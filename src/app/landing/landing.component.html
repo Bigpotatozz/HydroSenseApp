@@ -64,17 +64,10 @@
 
 
     <div class="opiniones flex gap-7 justify-center" id="opiniones">
-        <app-opinion [nombre]="'Juanito Alcachofa'" [calificacion]="5"
-            [descripcion]="'Producto 100 funcional y de gran ayuda'">
-        </app-opinion>
-
-        <app-opinion [nombre]="'María López'" [calificacion]="4"
-            [descripcion]="'Muy útil y fácil de usar, ha mejorado mucho la gestión del agua en nuestra comunidad.'">
-        </app-opinion>
-
-        <app-opinion [nombre]="'Carlos Sánchez'" [calificacion]="5"
-            [descripcion]="'La precisión es excelente y el equipo de soporte siempre responde rápidamente.'">
-        </app-opinion>
+       
+        <div *ngFor="let comentario of comentariosMostrar" class="opinion-card">
+            <app-opinion [nombre]="comentario.nombreUsuario" [descripcion]="comentario.comentario"></app-opinion>
+        </div>
     </div>
 
     <div id="productos">
