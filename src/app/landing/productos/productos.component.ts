@@ -13,25 +13,4 @@ import { LandingService } from '../../services/landing.service';
 })
 export class ProductosComponent {
   
-
-  cantidad: number = 0;
-  email: string = "";
-  nombre: string = "";
-
-  constructor(private landingService: LandingService){}
-
-  onSubmit() {
-
-    let cotizacion = new CreateCotizacion(this.nombre, this.email, `Se necesitan ${this.cantidad} sensores`);
-    this.landingService.postCotizacion(cotizacion).subscribe({
-      next: (data) => {
-        console.log('Cotización enviada:', data);
-        alert("Solicitud de cotizacion enviada correctamente")
-      },
-      error: (error) => {
-        console.error(error)
-      }
-    });
-  }
-
 }

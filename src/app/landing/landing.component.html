@@ -45,7 +45,7 @@
 
 
 
-<div class="content p-5">
+<div class="content p-15">
 
      <div id="nosotros">
         <app-nosotros></app-nosotros>
@@ -81,6 +81,10 @@
         <app-productos></app-productos>
     </div>
 
+    <div>
+        <app-cotizacion></app-cotizacion>
+    </div>
+
 
     <div id="contacto">
         <app-contacto></app-contacto>
@@ -93,44 +97,31 @@
 
 
 
+<footer class="footer p-4 gap-10">
+  
 
-<footer class="footer p-4">
+  <div class="footer-contactos">
+    <h2>Correos de contacto: </h2>
+    <ul>
+      <li><strong>Correo 1:</strong> <br> {{'ventashidronsense@gmail.com'}}</li>
+      <li><strong>Correo 2:</strong> <br>{{'oscarmancilla227@gmail.com'}}</li>
+      <li><strong>Correo 3:</strong> <br>{{'erickvillaseordavid@gmail.com'}}</li>
+      <li><strong>Correo 4:</strong> <br>{{'rp6245397@gmail.com'}}</li>
+    </ul>
+  </div>
 
-    <div class="footer-content flex justify-center items-center gap-4">
-        <div class="footer-text">
-            <p>© 2023 HydroSense. Todos los derechos reservados.</p>
-        </div>
-        <div class="footer-links">
-            <a href="#">Política de privacidad</a>
-            <span>|</span>
-            <a href="#">Términos de servicio</a>
-        </div>
+   <div class="footer-contactos">
+    <h2>Telefonos de contacto</h2>
+    <ul>
+      <li><strong>Teléfono:</strong> <br> 4775872265</li>
+      <li><strong>Teléfono:</strong> <br> 4776711854</li>
+      <li><strong>Teléfono:</strong> <br> 4791428209</li>
+    </ul>
+  </div>
 
-        <div class="footer-social">
-            <a href="#"><i class="pi pi-facebook p-5"></i></a>
-            <a href="#"><i class="pi pi-twitter p-5"></i></a>
-            <a href="#"><i class="pi pi-instagram p-5"></i></a>
-        </div>
-    </div>
+  <div class="footer-content  justify-center items-center gap-4">
+ 
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.226296332273!2d-101.58422372402234!3d21.063622086578896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842b963652f40f0d%3A0xa7d88da0ad8eff8a!2sUniversidad%20Tecnol%C3%B3gica%20de%20Le%C3%B3n!5e0!3m2!1ses-419!2smx!4v1754542868726!5m2!1ses-419!2smx" width="500" height="300" style="border:1; border-radius: 1rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-
-    <div class="container-contacto">
-        <h1>¡Envíanos tus datos y te atenderemos!</h1>
-        <form class="form-contacto">
-            <label for="nombre" class="label-contacto">Nombre</label>
-            <input id="nombre" name="nombre" type="text" placeholder="Ingresa tu nombre" class="input-contacto">
-
-            <label for="email" class="label-contacto">Email</label>
-            <input id="email" name="email" type="email" placeholder="Ingresa tu email" class="input-contacto">
-
-            <label for="telefono" class="label-contacto">Teléfono</label>
-            <input id="telefono" name="telefono" type="text" placeholder="Ingresa tu teléfono" class="input-contacto">
-
-            <label for="asunto" class="label-contacto">Asunto</label>
-            <input id="asunto" name="asunto" type="text" placeholder="Ingresa el asunto" class="input-contacto">
-
-            <button type="submit" class="btn-contacto">Enviar</button>
-        </form>
-    </div>
-
+  </div>
 </footer>

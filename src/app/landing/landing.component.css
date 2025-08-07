@@ -72,3 +72,58 @@ html {
   font-weight: 500;
   text-align: left;
 }
+
+.contacto {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
+.footer {
+  background: #151515;;
+  color: #fff;
+  border-radius: 18px 18px 0 0;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+
+}
+
+.footer-content {
+  margin-bottom: 1.2rem;
+}
+
+.footer-links a {
+  color: #fff;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #b3cae9;
+  text-decoration: underline;
+}
+
+.footer-contactos {
+  margin-top: 1.2rem;
+}
+
+.footer-contactos h2 {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #bcdffb;
+  font-weight: 600;
+}
+
+.footer-contactos ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contactos li {
+  font-size: 1rem;
+  padding: 2px 0;
+}

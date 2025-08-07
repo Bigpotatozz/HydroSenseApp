@@ -1,0 +1,30 @@
+<section class="producto-container">
+
+
+    <div class="content">
+        <h1>Solicitar cotización</h1>
+        <h2 class="product-title">Sensor de medición de calidad del agua</h2>
+
+        <form class="order-form" (ngSubmit)="onSubmit()" #cotizacionForm="ngForm">
+
+            <div class="input-group">
+                <input type="text" id="name" name="name" [(ngModel)]="nombre" placeholder="Nombre completo" required />
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Correo electrónico"
+                    required />
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="descripcion" name="descripcion" [(ngModel)]="descripcion"
+                    placeholder="Descripcion del problema" required />
+            </div>
+
+            <button type="submit" class="btn" [disabled]="!cotizacionForm.valid">
+                Cotizar
+            </button>
+        </form>
+
+    </div>
+</section>

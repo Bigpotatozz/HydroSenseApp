@@ -10,10 +10,11 @@ import { PreguntasComponent } from "./preguntas/preguntas.component";
 import { ProductosComponent } from "./productos/productos.component";
 import { ContactoComponent } from "./contacto/contacto.component";
 import { OpinionComponent } from "./opinion/opinion.component";
+import { CotizacionComponent } from "./cotizacion/cotizacion.component";
 
 @Component({
   selector: 'app-landing',
-  imports: [Toolbar, AvatarModule, ButtonModule, RouterModule, InicioComponent, NosotrosComponent, PreguntasComponent, ProductosComponent, ContactoComponent, OpinionComponent],
+  imports: [Toolbar, AvatarModule, ButtonModule, RouterModule, InicioComponent, NosotrosComponent, PreguntasComponent, ProductosComponent, ContactoComponent, OpinionComponent, CotizacionComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
