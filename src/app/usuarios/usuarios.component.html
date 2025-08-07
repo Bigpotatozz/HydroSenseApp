@@ -1,127 +1,149 @@
-
 <p-dialog header="Editar usuario" [(visible)]="visible" [style]="{ width: '25rem' }">
-    <span class="p-text-secondary block mb-8">Update your information.</span>
-    <div class="flex items-center gap-4 mb-4">
-        <label for="nombre" class="font-semibold w-24">Nombre</label>
-        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="nombre" />
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="apellidoPaterno" class="font-semibold w-24">Apellido p</label>
-        <input pInputText id="apellidoPaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoPaterno"/>
-    </div>
+  <span class="p-text-secondary block mb-8">Update your information.</span>
+  <div class="flex items-center gap-4 mb-4">
+    <label for="nombre" class="font-semibold w-24">Nombre</label>
+    <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="nombre" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="apellidoPaterno" class="font-semibold w-24">Apellido p</label>
+    <input pInputText id="apellidoPaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoPaterno" />
+  </div>
 
-    <div class="flex items-center gap-4 mb-8">
-        <label for="apellidoMaterno" class="font-semibold w-24">Apellido m</label>
-        <input pInputText id="apellidoMaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoMaterno"/>
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="edad" class="font-semibold w-24">Edad</label>
-        <input pInputText  type="number" id="edad" class="flex-auto" autocomplete="off" [(ngModel)]="edad"/>
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="pais" class="font-semibold w-24">Pais</label>
-        <input pInputText id="pais" class="flex-auto" autocomplete="off" [(ngModel)]="pais"/>
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="correo" class="font-semibold w-24">Correo</label>
-        <input pInputText id="correo" class="flex-auto" autocomplete="off" [(ngModel)]="correo"/>
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="contrasenia" class="font-semibold w-24">Contraseña</label>
-        <input pInputText id="contrasenia" class="flex-auto" autocomplete="off" [(ngModel)]="contrasenia"/>
-    </div>
-    <div class="flex items-center gap-4 mb-8">
-        <label for="telefono" class="font-semibold w-24">Telefono</label>
-        <input pInputText id="telefono" class="flex-auto" autocomplete="off" [(ngModel)]="telefono"/>
-    </div>
-    
+  <div class="flex items-center gap-4 mb-8">
+    <label for="apellidoMaterno" class="font-semibold w-24">Apellido m</label>
+    <input pInputText id="apellidoMaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoMaterno" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="edad" class="font-semibold w-24">Edad</label>
+    <input pInputText type="number" id="edad" class="flex-auto" autocomplete="off" [(ngModel)]="edad" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="pais" class="font-semibold w-24">Pais</label>
+    <input pInputText id="pais" class="flex-auto" autocomplete="off" [(ngModel)]="pais" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="correo" class="font-semibold w-24">Correo</label>
+    <input pInputText id="correo" class="flex-auto" autocomplete="off" [(ngModel)]="correo" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="contrasenia" class="font-semibold w-24">Contraseña</label>
+    <input pInputText id="contrasenia" class="flex-auto" autocomplete="off" [(ngModel)]="contrasenia" />
+  </div>
+  <div class="flex items-center gap-4 mb-8">
+    <label for="telefono" class="font-semibold w-24">Telefono</label>
+    <input pInputText id="telefono" class="flex-auto" autocomplete="off" [(ngModel)]="telefono" />
+  </div>
 
-    <div class="flex justify-end gap-2">
-        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
-        <p-button label="Save"  (click)="editarUsuario()" />
-    </div>
+
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+    <p-button label="Save"  (click)="editarUsuario()" />
+  </div>
 </p-dialog>
 
-
-<!--DIALOGO DE REGISTRO-->
 
 <p-dialog header="Agregar usuario" [(visible)]="visible2" [style]="{ width: '25rem' }">
-    <span class="p-text-secondary block mb-8">Update your information.</span>
+  <span class="p-text-secondary block mb-8">Update your information.</span>
+  <form #registrationForm="ngForm">
     <div class="flex items-center gap-4 mb-4">
-        <label for="nombre" class="font-semibold w-24">Nombre</label>
-        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="nombre" />
+      <label for="nombre" class="font-semibold w-24">Nombre</label>
+      <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="nombre" name="nombre" required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]*$" />
     </div>
     <div class="flex items-center gap-4 mb-8">
-        <label for="apellidoPaterno" class="font-semibold w-24">Apellido p</label>
-        <input pInputText id="apellidoPaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoPaterno"/>
-    </div>
-
-    <div class="flex items-center gap-4 mb-8">
-        <label for="apellidoMaterno" class="font-semibold w-24">Apellido m</label>
-        <input pInputText id="apellidoMaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoMaterno"/>
+      <label for="apellidoPaterno" class="font-semibold w-24">Apellido p</label>
+      <input pInputText id="apellidoPaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoPaterno" name="apellidoPaterno" required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]*$" />
     </div>
     <div class="flex items-center gap-4 mb-8">
-        <label for="edad" class="font-semibold w-24">Edad</label>
-        <input pInputText  type="number" id="edad" class="flex-auto" autocomplete="off" [(ngModel)]="edad"/>
+      <label for="apellidoMaterno" class="font-semibold w-24">Apellido m</label>
+      <input pInputText id="apellidoMaterno" class="flex-auto" autocomplete="off" [(ngModel)]="apellidoMaterno" name="apellidoMaterno" required pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]*$" />
     </div>
     <div class="flex items-center gap-4 mb-8">
-        <label for="pais" class="font-semibold w-24">Pais</label>
-        <input pInputText id="pais" class="flex-auto" autocomplete="off" [(ngModel)]="pais"/>
+      <label for="edad" class="font-semibold w-24">Edad</label>
+      <input pInputText type="number" id="edad" class="flex-auto" autocomplete="off" [(ngModel)]="edad" name="edad" required min="18" />
     </div>
     <div class="flex items-center gap-4 mb-8">
-        <label for="correo" class="font-semibold w-24">Correo</label>
-        <input pInputText id="correo" class="flex-auto" autocomplete="off" [(ngModel)]="correo"/>
+      <label for="pais" class="font-semibold w-24">Pais</label>
+      <select pInputText id="pais" class="flex-auto" autocomplete="off" [(ngModel)]="pais" name="pais" required>
+        <option value="" disabled selected>Selecciona un país</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Bolivia">Bolivia</option>
+        <option value="Brasil">Brasil</option>
+        <option value="Canadá">Canadá</option>
+        <option value="Chile">Chile</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Costa Rica">Costa Rica</option>
+        <option value="Cuba">Cuba</option>
+        <option value="Ecuador">Ecuador</option>
+        <option value="El Salvador">El Salvador</option>
+        <option value="Estados Unidos">Estados Unidos</option>
+        <option value="Guatemala">Guatemala</option>
+        <option value="Honduras">Honduras</option>
+        <option value="México">México</option>
+        <option value="Nicaragua">Nicaragua</option>
+        <option value="Panamá">Panamá</option>
+        <option value="Paraguay">Paraguay</option>
+        <option value="Perú">Perú</option>
+        <option value="República Dominicana">República Dominicana</option>
+        <option value="Uruguay">Uruguay</option>
+        <option value="Venezuela">Venezuela</option>
+      </select>
     </div>
     <div class="flex items-center gap-4 mb-8">
-        <label for="contrasenia" class="font-semibold w-24">Contraseña</label>
-        <input pInputText id="contrasenia" class="flex-auto" autocomplete="off" [(ngModel)]="contrasenia"/>
+      <label for="correo" class="font-semibold w-24">Correo</label>
+      <input pInputText type="email" id="correo" class="flex-auto" autocomplete="off" [(ngModel)]="correo" name="correo" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" />
     </div>
     <div class="flex items-center gap-4 mb-8">
-        <label for="telefono" class="font-semibold w-24">Telefono</label>
-        <input pInputText id="telefono" class="flex-auto" autocomplete="off" [(ngModel)]="telefono"/>
+      <label for="contrasenia" class="font-semibold w-24">Contraseña</label>
+      <input pInputText id="contrasenia" class="flex-auto" autocomplete="off" [(ngModel)]="contrasenia" name="contrasenia" required />
     </div>
-     <div class="flex items-center gap-4 mb-8">
-        <label for="nivel" class="font-semibold w-24">Nivel</label>
-        <input pInputText id="nivel" class="flex-auto" autocomplete="off" [(ngModel)]="nivel"/>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="telefono" class="font-semibold w-24">Telefono</label>
+      <input pInputText type="tel" id="telefono" class="flex-auto" autocomplete="off" [(ngModel)]="telefono" name="telefono" required pattern="[0-9]{10}" maxlength="10" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="nivel" class="font-semibold w-24">Nivel</label>
+      <select pInputText id="nivel" class="flex-auto" autocomplete="off" [(ngModel)]="nivel" name="nivel" required>
+        <option value="" disabled selected>Selecciona un nivel</option>
+        <option value="1">Administrador</option>
+        <option value="2">Cliente</option>
+      </select>
     </div>
 
     <div class="flex justify-end gap-2">
-        <p-button label="Cancel" severity="secondary" (click)="visible2 = false" />
-        <p-button label="Save" (onClick)="agregarUsuario()" />
+      <p-button label="Cancel" severity="secondary" (click)="visible2 = false" />
+      <p-button label="Save" (onClick)="agregarUsuario()" [disabled]="!registrationForm.form.valid" />
     </div>
+  </form>
 </p-dialog>
-
-
 
 
 <div class="flex justify-content-end mb-4">
-    <button pButton type="button" label="Registrar usuario" class="p-button-success" (click)="showDialog2()"></button>
+  <button pButton type="button" label="Registrar usuario" class="p-button-success" (click)="showDialog2()"></button>
 </div>
 
 <p-table [value]="usuarios" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-    [rowsPerPageOptions]="[5, 10, 20]">
-    <ng-template #header>
-        <tr>
-            <th style="width:25%">Nombre</th>
-            <th style="width:25%">Correo</th>
-            <th style="width:25%">Telefono</th>
-            <th style="width:25%">Tipo</th>
-            <th style="width:25%"> Acciones</th>
-        </tr>
-    </ng-template>
-    <ng-template #body let-user>
-        <tr>
-            <td>{{ user.nombre }}</td>
-            <td>{{ user.correo }}</td>
-            <td>{{ user.telefono }}</td>
-            <td>{{ user.nivel }}</td>
-            <td>
-                <div class="flex justify-content-center">
-                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-info" (click)="showDialog(user)"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="eliminarUsuario(user.idUsuario)"></button>
-                </div>
-
-            </td>
-        </tr>
-    </ng-template>
+           [rowsPerPageOptions]="[5, 10, 20]">
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width:25%">Nombre</th>
+      <th style="width:25%">Correo</th>
+      <th style="width:25%">Telefono</th>
+      <th style="width:25%">Tipo</th>
+      <th style="width:25%"> Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-user>
+    <tr #filaUsuario>
+      <td>{{ user.nombre }}</td>
+      <td>{{ user.correo }}</td>
+      <td>{{ user.telefono }}</td>
+      <td>{{ user.nivel }}</td>
+      <td>
+        <div class="flex justify-content-center">
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-info" (click)="showDialog(user)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="filaUsuario.style.display = 'none'"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
 </p-table>

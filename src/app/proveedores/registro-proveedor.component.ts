@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-registro-proveedor',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule], 
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './registro-proveedor.component.html',
   styleUrls: ['./registro-proveedor.component.css']
 })
@@ -40,6 +40,7 @@ export class RegistroProveedorComponent implements OnInit {
 
   registrarProveedor(): void {
     const proveedorData: ProveedorConComponentesDTO = {
+      idProveedor: 0, 
       nombreProveedor: this.nombreProveedor,
       nombreContacto: this.nombreContacto,
       componentes: this.componentes.filter(c => c.nombreComponente && c.cantidad > 0) 

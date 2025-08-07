@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-detalle-proveedor',
@@ -19,26 +20,34 @@ export class DetalleProveedorComponent implements OnInit {
   cantidades: { [idComponente: number]: number } = {};
   precios: { [idComponente: number]: number } = {};
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) { }
 
+  token:any='';
   ngOnInit(): void {
     const proveedorParam = this.route.snapshot.queryParamMap.get('proveedor');
     const contactoParam = this.route.snapshot.queryParamMap.get('contacto');
     const idProveedor = this.route.snapshot.queryParamMap.get('id');
+    console.log(idProveedor)
 
     if (!idProveedor) return;
 
     this.proveedor = proveedorParam || '';
     this.contacto = contactoParam || '';
 
-    const headers = new HttpHeaders().set('idProveedor', idProveedor);
+   this.token = this.authService.getCurrentUserToken();
 
-    this.http.get<any>('https://localhost:7160/api/Proveedor/componentes-por-proveedor', { headers })
-      .subscribe({
-        next: (res) => {
-          if (res.success) this.componentes = res.data;
-        }
-      });
+    this.http.get<any>(
+      `https://localhost:7160/api/Proveedor/componentes-por-proveedor`,
+      { headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}`, 'idProveedor': idProveedor }) }
+    ).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.componentes = res.data;
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    });
   }
 
   toggleFormulario(id: number): void {
@@ -54,7 +63,8 @@ export class DetalleProveedorComponent implements OnInit {
       precioAdquisicion: this.precios[id]
     };
 
-    this.http.put<any>('https://localhost:7160/api/Proveedor/actualizar-inventario', body)
+    this.http.put<any>('https://localhost:7160/api/Proveedor/actualizar-inventario',
+      body, { headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}`}) })
       .subscribe({
         next: (res) => {
           if (res.success) {

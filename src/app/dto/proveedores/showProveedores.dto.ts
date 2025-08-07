@@ -4,6 +4,7 @@ export interface ComponenteDTO {
 }
 
 export interface ProveedorConComponentesDTO {
+  idProveedor: number;
   nombreProveedor: string;
   nombreContacto: string;
   componentes: ComponenteDTO[];

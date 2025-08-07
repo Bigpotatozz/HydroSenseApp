@@ -7,6 +7,7 @@ export interface ComponenteRegistroDTO {
 }
 
 export interface ProveedorConComponentesDTO {
+  idProveedor: number;
   nombreProveedor: string;
   nombreContacto: string;
   componentes: ComponenteRegistroDTO[];
