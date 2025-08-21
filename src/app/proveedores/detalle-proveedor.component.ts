@@ -20,34 +20,73 @@ export class DetalleProveedorComponent implements OnInit {
   cantidades: { [idComponente: number]: number } = {};
   precios: { [idComponente: number]: number } = {};
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) { }
+  telefono: string = '';
+  correo: string = '';
+  calle: string = '';
+  numero: string = '';
+  colonia: string = '';
+  ciudad: string = '';
+  estado: string = '';
+  codigoPostal: string = '';
+  pais: string = '';
 
-  token:any='';
+  token: any = '';
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private authService: AuthService) {}
+
   ngOnInit(): void {
     const proveedorParam = this.route.snapshot.queryParamMap.get('proveedor');
     const contactoParam = this.route.snapshot.queryParamMap.get('contacto');
     const idProveedor = this.route.snapshot.queryParamMap.get('id');
-    console.log(idProveedor)
 
     if (!idProveedor) return;
 
     this.proveedor = proveedorParam || '';
     this.contacto = contactoParam || '';
 
-   this.token = this.authService.getCurrentUserToken();
+    const stored = localStorage.getItem('proveedorSeleccionado');
+    if (stored) {
+      try {
+        const prov = JSON.parse(stored);
+        this.telefono = prov?.telefono || '';
+        this.correo = prov?.correo || '';
+        this.calle = prov?.calle || '';
+        this.numero = prov?.numero || '';
+        this.colonia = prov?.colonia || '';
+        this.ciudad = prov?.ciudad || '';
+        this.estado = prov?.estado || '';
+        this.codigoPostal = prov?.codigoPostal || '';
+        this.pais = prov?.pais || '';
+      } catch { /* noop */ }
+    }
+
+    this.token = this.authService.getCurrentUserToken();
 
     this.http.get<any>(
       `https://localhost:7160/api/Proveedor/componentes-por-proveedor`,
       { headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}`, 'idProveedor': idProveedor }) }
     ).subscribe({
       next: (res) => {
-        console.log(res)
         this.componentes = res.data;
       },
       error: (err) => {
-        console.log(err)
+        console.error(err);
       }
     });
+  }
+
+  get direccionCompleta(): string {
+    const parts = [
+      this.calle,
+      this.numero,
+      this.colonia,
+      this.ciudad,
+      this.estado,
+      this.codigoPostal,
+      this.pais
+    ].map(v => (v ?? '').toString().trim()).filter(v => v.length > 0);
+
+    return parts.length > 0 ? parts.join(', ') : '—';
   }
 
   toggleFormulario(id: number): void {
@@ -64,7 +103,7 @@ export class DetalleProveedorComponent implements OnInit {
     };
 
     this.http.put<any>('https://localhost:7160/api/Proveedor/actualizar-inventario',
-      body, { headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}`}) })
+      body, { headers: new HttpHeaders({ 'Authorization': `Bearer ${this.token}` }) })
       .subscribe({
         next: (res) => {
           if (res.success) {

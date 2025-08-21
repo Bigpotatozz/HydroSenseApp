@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ProveedorService } from '../services/proveedor.service';
 import { Router } from '@angular/router';
-
 import {
   ProveedorConComponentesDTO,
   ApiResponse
@@ -19,8 +18,7 @@ import {
 export class ProveedoresComponent implements OnInit {
   proveedores: ProveedorConComponentesDTO[] = [];
 
-  constructor(private proveedorService: ProveedorService,
-    private router: Router) { }
+  constructor(private proveedorService: ProveedorService, private router: Router) {}
 
   ngOnInit(): void {
     this.proveedorService.obtenerProveedoresConComponentes().subscribe({
@@ -32,8 +30,8 @@ export class ProveedoresComponent implements OnInit {
       error: (err) => console.error('Error al obtener proveedores', err)
     });
   }
+
   verDetalle(proveedor: ProveedorConComponentesDTO): void {
-    console.log(proveedor)
     localStorage.setItem('proveedorSeleccionado', JSON.stringify(proveedor));
     this.router.navigate(['/home/proveedores/detalle'], {
       queryParams: {
@@ -42,10 +40,21 @@ export class ProveedoresComponent implements OnInit {
         contacto: proveedor.nombreContacto
       }
     });
-
-
-
-  
   }
 
+  formatDireccion(p: ProveedorConComponentesDTO): string {
+    const parts = [
+      p.calle,
+      p.numero,
+      p.colonia,
+      p.ciudad,
+      p.estado,
+      p.codigoPostal,
+      p.pais
+    ]
+      .map(v => (v ?? '').toString().trim())
+      .filter(v => v.length > 0);
+
+    return parts.length > 0 ? parts.join(', ') : '—';
+  }
 }
