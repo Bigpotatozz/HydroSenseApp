@@ -118,6 +118,10 @@
       </div>
     </div>
 
+    <datalist id="listaComponentes">
+      <option *ngFor="let n of nombresComponentes" [value]="n"></option>
+    </datalist>
+
     <h3>Componentes</h3>
     <div class="componentes-list">
       <div *ngFor="let componente of componentes; let i = index" class="component-item">
@@ -128,9 +132,11 @@
             id="nombreComponente{{i}}"
             [(ngModel)]="componente.nombreComponente"
             name="nombreComponente{{i}}"
-            required
+            list="listaComponentes"
+            autocomplete="off"
             pattern="^[a-zA-Z0-9\\s]*$"
-            title="Solo se permiten letras, números y espacios."
+            title="Selecciona de la lista o escribe uno nuevo"
+            placeholder="Selecciona uno/escribe"
           />
         </div>
 
@@ -141,9 +147,8 @@
             id="descripcion{{i}}"
             [(ngModel)]="componente.descripcion"
             name="descripcion{{i}}"
-            required
             pattern="^[a-zA-Z0-9\\s.,]*$"
-            title="Solo se permiten letras, números, espacios y los caracteres especiales . y ,"
+            title="Solo se permiten letras, números, espacios y los caracteres . y ,"
           />
         </div>
 
@@ -154,7 +159,6 @@
             id="precioCompra{{i}}"
             [(ngModel)]="componente.precio"
             name="precioCompra{{i}}"
-            required
             min="0.01"
             step="0.01"
             title="El precio debe ser mayor a 0."
@@ -168,7 +172,6 @@
             id="cantidadIngresada{{i}}"
             [(ngModel)]="componente.cantidad"
             name="cantidadIngresada{{i}}"
-            required
             min="1"
             step="1"
             title="Solo se permiten números enteros mayores a 0."
@@ -194,8 +197,7 @@
     <button
       type="button"
       (click)="registrarProveedor()"
-      class="btn btn-primary-submit"
-    >
+      class="btn btn-primary-submit">
       Guardar
     </button>
   </form>

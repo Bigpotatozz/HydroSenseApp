@@ -36,4 +36,10 @@ export class ProveedorService {
   registrarProveedorConComponentes(dto: ProveedorRegistrarDTO): Observable<RegistroProveedorResponse> {
     return this.http.post<RegistroProveedorResponse>(`${this.url}/api/Proveedor/registrar-proveedor`, dto);
 }
+
+  obtenerNombresComponentes(): Observable<{ success: boolean; data: string[] }> {
+    return this.http.get<{ success: boolean; data: string[] }>(
+      `${this.url}/api/Proveedor/componentes-nombres`
+    );
+}
 }
