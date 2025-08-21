@@ -33,7 +33,7 @@ export class ProveedorService {
     return this.http.put<any>(`${this.url}/api/Proveedor/actualizar-inventario`, dto);
   }
 
-  registrarProveedorConComponentes(dto: ProveedorRegistrarDTO) {
-  return this.http.post<RegistroProveedorResponse>(`${this.url}/api/Proveedor/registrar-proveedor`, dto);
+  registrarProveedorConComponentes(dto: ProveedorRegistrarDTO): Observable<RegistroProveedorResponse> {
+    return this.http.post<RegistroProveedorResponse>(`${this.url}/api/Proveedor/registrar-proveedor`, dto);
 }
 }

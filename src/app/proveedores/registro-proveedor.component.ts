@@ -56,52 +56,69 @@ export class RegistroProveedorComponent implements OnInit {
   }
 
   registrarProveedor(): void {
-    const dto: ProveedorRegistrarDTO = {
-      idProveedor: 0,
-      nombreProveedor: this.nombreProveedor,
-      nombreContacto: this.nombreContacto,
+  console.log('[REGISTRO] Click Guardar');
 
-      telefono: this.telefono || undefined,
-      correo: this.correo || undefined,
+  const dto: ProveedorRegistrarDTO = {
+    idProveedor: 0,
+    nombreProveedor: this.nombreProveedor?.trim(),
+    nombreContacto: this.nombreContacto?.trim(),
+    telefono: this.telefono || undefined,
+    correo: this.correo || undefined,
+    calle: this.calle || undefined,
+    numero: this.numero || undefined,
+    colonia: this.colonia || undefined,
+    ciudad: this.ciudad || undefined,
+    estado: this.estado || undefined,
+    codigoPostal: this.codigoPostal || undefined,
+    pais: this.pais || undefined,
+    componentes: this.componentes
+      .filter(c => c.nombreComponente && c.cantidad > 0 && c.precio >= 0.01)
+      .map(c => ({
+        nombreComponente: c.nombreComponente.trim(),
+        descripcion: c.descripcion?.trim() || '',
+        precio: Number(c.precio),
+        cantidad: Number(c.cantidad)
+      }))
+  };
 
-      calle: this.calle || undefined,
-      numero: this.numero || undefined,
-      colonia: this.colonia || undefined,
-      ciudad: this.ciudad || undefined,
-      estado: this.estado || undefined,
-      codigoPostal: this.codigoPostal || undefined,
-      pais: this.pais || undefined,
+  const faltantes: string[] = [];
+if (!dto.nombreProveedor) faltantes.push('Nombre del proveedor');
+if (!dto.nombreContacto) faltantes.push('Nombre del contacto');
+if (!this.telefono) faltantes.push('Teléfono');
+if (!this.correo) faltantes.push('Email');
 
-      componentes: this.componentes
-        .filter(c => c.nombreComponente && c.cantidad > 0 && c.precio >= 0.01)
-        .map(c => ({
-          nombreComponente: c.nombreComponente.trim(),
-          descripcion: c.descripcion?.trim() || '',
-          precio: Number(c.precio),
-          cantidad: Number(c.cantidad)
-        }))
-    };
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (this.correo && !emailRegex.test(this.correo)) faltantes.push('Email (formato inválido)');
 
-    if (!dto.nombreProveedor?.trim() || !dto.nombreContacto?.trim()) {
-      alert('Nombre del proveedor y nombre del contacto son obligatorios.');
-      return;
-    }
+const telRegex = /^[0-9+\-\s]{7,20}$/;
+if (this.telefono && !telRegex.test(this.telefono)) faltantes.push('Teléfono (formato inválido)');
 
-    this.proveedorService.registrarProveedorConComponentes(dto).subscribe({
-      next: (res) => {
-        if (res.success) {
-          alert(res.message);
-          this.resetForm();
-        } else {
-          alert('Error: ' + res.message);
-        }
-      },
-      error: (err) => {
-        console.error('Error al registrar proveedor', err);
-        alert(err.error?.message || 'Ocurrió un error al registrar el proveedor.');
+if (faltantes.length > 0) {
+  alert('Faltan o son inválidos los siguientes campos:\n- ' + faltantes.join('\n- '));
+  console.warn('[REGISTRO] Campos faltantes/invalidos:', faltantes, 'DTO:', dto);
+  return;
+}
+
+  console.log('[REGISTRO] Enviando DTO:', dto);
+
+  this.proveedorService.registrarProveedorConComponentes(dto).subscribe({
+    next: (res) => {
+      console.log('[REGISTRO] Respuesta API:', res);
+      if (res.success) {
+        alert(res.message || 'Proveedor registrado correctamente');
+        this.resetForm();
+      } else {
+        alert('Error: ' + (res.message || 'No se pudo registrar el proveedor.'));
       }
-    });
-  }
+    },
+    error: (err) => {
+      console.error('[REGISTRO] Error API:', err);
+      const msg = err?.error?.message || err?.message || 'Error al registrar el proveedor.';
+      alert(msg);
+    }
+  });
+}
+
 
   private resetForm(): void {
     this.nombreProveedor = '';
