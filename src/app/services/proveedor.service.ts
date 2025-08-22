@@ -5,7 +5,7 @@ import {
   ApiResponse,
   ProveedorConComponentesDTO
 } from '../dto/proveedores/showProveedores.dto';
-import { RegistroProveedorResponse } from '../dto/proveedores/createProveedores.dto';
+import { RegistroProveedorResponse, ProveedorRegistrarDTO } from '../dto/proveedores/createProveedores.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,13 @@ export class ProveedorService {
     return this.http.put<any>(`${this.url}/api/Proveedor/actualizar-inventario`, dto);
   }
 
-  registrarProveedorConComponentes(dto: ProveedorConComponentesDTO): Observable<RegistroProveedorResponse> {
+  registrarProveedorConComponentes(dto: ProveedorRegistrarDTO): Observable<RegistroProveedorResponse> {
     return this.http.post<RegistroProveedorResponse>(`${this.url}/api/Proveedor/registrar-proveedor`, dto);
+  }
+
+  obtenerNombresComponentes(): Observable<{ success: boolean; data: string[] }> {
+    return this.http.get<{ success: boolean; data: string[] }>(
+      `${this.url}/api/Proveedor/componentes-nombres`
+    );
   }
 }

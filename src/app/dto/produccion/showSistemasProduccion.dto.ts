@@ -10,6 +10,9 @@ export interface SistemaProduccionDTO {
   sistemasDisponibles: number;
   componentes: ComponenteSimpleDTO[];
   costoTotalProduccion: number;
+  descripcion: string;
+  fabricante: string;
+  urlImagen: string;
 }
 
 export interface ApiResponse<T> {

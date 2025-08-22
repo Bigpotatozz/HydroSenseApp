@@ -1,30 +1,72 @@
 <section class="producto-container">
+  <div class="content">
+    <h1>Solicitar cotización</h1>
+    <h2 class="product-title">Sensor de medición de calidad del agua</h2>
 
+    <form class="order-form" (ngSubmit)="onSubmit()" #cotizacionForm="ngForm">
+      <div class="input-group">
+        <input type="text" name="name" [(ngModel)]="nombre" placeholder="Nombre completo" required />
+      </div>
 
-    <div class="content">
-        <h1>Solicitar cotización</h1>
-        <h2 class="product-title">Sensor de medición de calidad del agua</h2>
+      <div class="input-group">
+        <input type="email" name="email" [(ngModel)]="email" placeholder="Correo electrónico" required />
+      </div>
 
-        <form class="order-form" (ngSubmit)="onSubmit()" #cotizacionForm="ngForm">
+      <div class="input-group">
+        <input type="text" name="descripcion" [(ngModel)]="descripcion" placeholder="Descripción del problema" required />
+      </div>
 
-            <div class="input-group">
-                <input type="text" id="name" name="name" [(ngModel)]="nombre" placeholder="Nombre completo" required />
-            </div>
+      <label class="label">Selecciona un producto</label>
+      <div class="input-group">
+        <select
+          class="select-contrast"
+          [(ngModel)]="seleccionActual"
+          (change)="onSeleccionProducto(seleccionActual)"
+          [ngModelOptions]="{ standalone: true }"
+          [disabled]="loading || !!errorMsg"
+        >
+          <option value="">Selecciona un producto</option>
 
-            <div class="input-group">
-                <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="Correo electrónico"
-                    required />
-            </div>
+          <optgroup label="Sistemas">
+            <ng-container *ngFor="let p of productos">
+              <option
+                *ngIf="p.tipo === 'sistema' && !estaSeleccionado(p)"
+                [value]="'sistema|' + p.id"
+              >
+                {{ p.nombre }} — {{ p.precio | currency:'MXN':'symbol-narrow':'1.2-2' }}
+              </option>
+            </ng-container>
+          </optgroup>
 
-            <div class="input-group">
-                <input type="text" id="descripcion" name="descripcion" [(ngModel)]="descripcion"
-                    placeholder="Descripcion del problema" required />
-            </div>
+          <optgroup label="Componentes">
+            <ng-container *ngFor="let p of productos">
+              <option
+                *ngIf="p.tipo === 'componente' && !estaSeleccionado(p)"
+                [value]="'componente|' + p.id"
+              >
+                {{ p.nombre }} — {{ p.precio | currency:'MXN':'symbol-narrow':'1.2-2' }}
+              </option>
+            </ng-container>
+          </optgroup>
+        </select>
+      </div>
 
-            <button type="submit" class="btn" [disabled]="!cotizacionForm.valid">
-                Cotizar
-            </button>
-        </form>
+      <div *ngIf="loading" class="hint">Cargando productos…</div>
+      <div *ngIf="!loading && errorMsg" class="error">{{ errorMsg }}</div>
+      <div *ngIf="!loading && !errorMsg && productos.length === 0" class="hint">No hay productos disponibles.</div>
 
-    </div>
+      <div class="seleccionados" *ngIf="seleccionados.length">
+        <div class="seleccion-item" *ngFor="let s of seleccionados">
+          <input
+            type="text"
+            [value]="(s.tipo === 'sistema' ? 'Sistema' : 'Componente') + ' · ' + s.nombre + ' — ' + (s.precio | currency:'MXN':'symbol-narrow':'1.2-2')"
+            readonly
+          />
+          <button type="button" (click)="quitarProducto(s)">Quitar</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" [disabled]="!cotizacionForm.valid">Cotizar</button>
+    </form>
+  </div>
 </section>

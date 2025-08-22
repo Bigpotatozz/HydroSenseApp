@@ -234,3 +234,21 @@
 .focus\:ring-blue-500:focus {
   box-shadow: 0 0 0 2px #3b82f6;
 }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50
+}
+
+.modal-card {
+  background: #fff;
+  width: min(720px, 95vw);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25)
+}

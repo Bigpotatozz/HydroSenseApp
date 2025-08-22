@@ -1,0 +1,34 @@
+<div class="p-6">
+  <h1 class="text-2xl font-bold mb-4">Listado de ventas</h1>
+
+  <div *ngIf="cargando" class="text-gray-600">Cargando...</div>
+  <div *ngIf="!cargando && error" class="text-red-600">{{ error }}</div>
+
+  <div *ngIf="!cargando && !error && ventas.length === 0" class="text-gray-600">
+    No hay ventas registradas.
+  </div>
+
+  <div *ngIf="!cargando && ventas.length > 0" class="space-y-3">
+    <div *ngFor="let v of ventas" class="border rounded-lg p-4 bg-white shadow-sm">
+      <div class="flex justify-between items-center">
+        <div class="font-semibold">
+          Venta #{{ v.idVenta }} — {{ v.cliente || 'Cliente no especificado' }}
+        </div>
+        <div class="text-sm text-gray-600">
+          {{ v.fecha | date:'short' }}
+        </div>
+      </div>
+
+      <div class="mt-2 text-sm text-gray-700">
+        Total: ${{ v.total | number:'1.2-2' }} |
+        Items: {{ v.items?.length || 0 }}
+      </div>
+
+      <ul class="mt-2 list-disc pl-6 text-sm text-gray-700" *ngIf="v.items?.length">
+        <li *ngFor="let it of v.items">
+          {{ it.nombre }} — {{ it.cantidad }} x ${{ it.precio | number:'1.2-2' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

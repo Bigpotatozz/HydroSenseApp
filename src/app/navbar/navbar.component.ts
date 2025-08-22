@@ -39,7 +39,8 @@ export class NavbarComponent implements OnInit {
         items: [
           { label: 'Dashboard', icon: 'pi pi-chart-bar', routerLink: ['/home/dashboard'] },
           { label: 'Vender', icon: 'pi pi-shopping-cart', routerLink: ['/home/ventas'] },
-          { label: 'Cotizaciones', icon: 'pi pi-file-o', routerLink: ['/home/cotizaciones'] }
+          { label: 'Cotizaciones', icon: 'pi pi-file-o', routerLink: ['/home/cotizaciones'] },
+          { label: 'Listado de ventas', icon: 'pi pi-list', routerLink: ['/home/ventas/listado'] } 
         ]
       },
       {

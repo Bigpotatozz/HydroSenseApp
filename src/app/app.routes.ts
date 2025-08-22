@@ -14,50 +14,66 @@ import { VentaComponent } from './ventas/ventas.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistroProveedorComponent } from './proveedores/registro-proveedor.component';
-
+import { ListadoVentasComponent } from './ventas/listado-ventas.component';
 
 
 export const routes: Routes = [
-    {
-        path: '', component: LandingComponent
-    },
+  { path: '', component: LandingComponent },
+  {
+    path: 'registro-clientes',
+    loadComponent: () =>
+      import('./pages/registrocliente/registrocliente.component')
+        .then(m => m.RegistroclienteComponent)
+  },
 
-
-    {
-
-        path: 'home', 
-        component: HomeComponent,
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['1'] },
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'comentarios', component: ComentariosComponent },
+      { path: 'proveedores', component: ProveedoresComponent },
+      {
+        path: 'proveedores/detalle',
+        component: DetalleProveedorComponent,
         canActivate: [RoleGuard],
-        data: {roles: ['1']},
-        
-      children: [
-          { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-          { path: 'usuarios', component: UsuariosComponent },
-          { path: 'comentarios', component: ComentariosComponent },
-          { path: 'proveedores', component: ProveedoresComponent },
-          {
-            path: 'proveedores/detalle', 
-            component: DetalleProveedorComponent,
-            canActivate: [RoleGuard], 
-            data: { roles: ['1'] } 
-          },
-          { path: 'cotizaciones', component: CotizacionesComponent },
-          { path: 'produccion', component: ProduccionComponent },
-          { path: 'ventas', component: VentaComponent },
-          { path: 'inventario', component: InventarioComponent },
-          { path: 'dashboard', component: DashboardComponent },
-          { path: 'registro-proveedor', component: RegistroProveedorComponent },
-        ]
-    },
-    {
-        path: 'login', component: LoginComponent
-    },
-    {
-        path: 'panelClientes', 
-        component: PanelClientesComponent,
-        canActivate: [RoleGuard],
-      data: { roles: ['2'] },
+        data: { roles: ['1'] }
+      },
+      { path: 'cotizaciones', component: CotizacionesComponent },
+      { path: 'produccion', component: ProduccionComponent },
+      { path: 'ventas/listado', component: ListadoVentasComponent },
+      { path: 'ventas', component: VentaComponent },
+      { path: 'inventario', component: InventarioComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'registro-proveedor', component: RegistroProveedorComponent }
+    ]
+  },
 
-    }
-   
+  { path: 'login', component: LoginComponent },
+
+  {
+    path: 'panelClientes',
+    component: PanelClientesComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['2'] }
+  },
+  {
+    path: 'historial-compras',
+    canActivate: [RoleGuard],
+    data: { roles: ['2'] },
+    loadComponent: () =>
+      import('./historial-compras/historial-compras.component')
+        .then(m => m.HistorialComprasComponent)
+  },
+  {
+    path: 'perfil-usuario',
+    canActivate: [RoleGuard],
+    data: { roles: ['2'] },
+    loadComponent: () =>
+      import('./perfil-usuario/perfil-usuario.component')
+        .then(m => m.PerfilUsuarioComponent)
+  },
 ];

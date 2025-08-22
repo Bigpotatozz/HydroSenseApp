@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { VentaService } from '../services/ventas.service'; // Corregido el nombre del servicio
-import { UsuarioDTO, ProductoVentaDTO, DetalleVentaForm, VentaDTO } from '../dto/ventas/createVentas.dto'; // Corregida la ruta del DTO
+import { VentaService } from '../services/ventas.service';
+import { UsuarioDTO, ProductoVentaDTO, DetalleVentaForm } from '../dto/ventas/createVentas.dto';
 import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-venta',
   standalone: true,
   imports: [CommonModule, FormsModule, HttpClientModule],
-  templateUrl: './ventas.component.html', 
-  styleUrls: ['./ventas.component.css'] 
+  templateUrl: './ventas.component.html',
+  styleUrls: ['./ventas.component.css']
 })
 export class VentaComponent implements OnInit {
   usuarios: UsuarioDTO[] = [];
-  productos: ProductoVentaDTO[] = [];
+  productos: ProductoVentaDTO[] = []; // debe tener precioUnitario?: number en el DTO
 
   clienteSeleccionadoId: number | null = null;
   fechaVenta: string = '';
@@ -55,7 +55,12 @@ export class VentaComponent implements OnInit {
     this.ventaService.getProductosParaVenta().subscribe({
       next: (res) => {
         if (res.success) {
-          this.productos = res.data;
+          // Aseguramos que cada producto tenga precioUnitario (aunque sea 0)
+          this.productos = (res.data as ProductoVentaDTO[]).map(p => ({
+            ...p,
+            // @ts-ignore: si el DTO ya lo tiene, no pasa nada; si no, lo añade
+            precioUnitario: (p as any).precioUnitario ?? 0
+          }));
         }
       },
       error: (err) => alert('Error al cargar productos: ' + (err.error?.message || err.message))
@@ -92,9 +97,7 @@ export class VentaComponent implements OnInit {
 
   onCantidadChange(index: number): void {
     const detalle = this.detallesVenta[index];
-    if (detalle.cantidad === null) {
-      return;
-    }
+    if (detalle.cantidad === null) return;
 
     if (detalle.cantidad < 0) {
       detalle.cantidad = 0;
@@ -106,6 +109,21 @@ export class VentaComponent implements OnInit {
       alert(`No hay suficiente stock para ${detalle.productoSeleccionado.nombre}. Disponible: ${detalle.stockActual}`);
       detalle.cantidad = detalle.stockActual;
     }
+  }
+
+  // Helpers de precio (opcionales para usar en la vista)
+  getPrecioUnitario(detalle: DetalleVentaForm): number {
+    return detalle.productoSeleccionado ? ((detalle.productoSeleccionado as any).precioUnitario ?? 0) : 0;
+  }
+
+  getSubtotal(detalle: DetalleVentaForm): number {
+    const pu = this.getPrecioUnitario(detalle);
+    const cant = detalle.cantidad ?? 0;
+    return +(pu * cant).toFixed(2);
+  }
+
+  getTotal(): number {
+    return +this.detallesVenta.reduce((acc, d) => acc + this.getSubtotal(d), 0).toFixed(2);
   }
 
   registrarVenta(): void {

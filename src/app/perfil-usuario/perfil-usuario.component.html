@@ -1,0 +1,86 @@
+<div class="fixed top-0 left-0 w-full bg-black text-white p-4 flex items-center justify-between z-50 shadow-md">
+  <div class="flex items-center">
+    <div class="bg-white p-1 rounded-md mr-4 flex items-center justify-center" style="width: 40px; height: 40px;">
+      <img src="hydrosense.png" alt="Logo HidroSense" class="h-full w-full object-contain">
+    </div>
+    <span class="text-xl font-bold">HidroSense</span>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <a routerLink="/panelClientes" class="bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Panel</a>
+    <a routerLink="/historial-compras" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Historial de compras</a>
+    <a routerLink="/" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-300">Cerrar Sesión</a>
+  </div>
+</div>
+
+<div class="min-h-screen bg-gray-100 p-4 pt-[80px]">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-2xl font-bold text-gray-900 mb-4">Perfil de usuario</h1>
+    <p class="text-sm text-gray-600 mb-6">Actualiza tus datos. Deja la contraseña vacía para no cambiarla.</p>
+
+    <div *ngIf="loading()" class="bg-white p-6 rounded-lg shadow animate-pulse">Cargando perfil...</div>
+    <div *ngIf="!loading() && errorMsg()" class="bg-red-50 text-red-700 p-4 rounded-lg border border-red-200 mb-4">{{ errorMsg() }}</div>
+    <div *ngIf="!loading() && successMsg()" class="bg-green-50 text-green-700 p-4 rounded-lg border border-green-200 mb-4">{{ successMsg() }}</div>
+
+    <form *ngIf="!loading()" [formGroup]="form" (ngSubmit)="guardar()" class="bg-white p-6 rounded-lg shadow space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Nombre</label>
+          <input formControlName="nombre" type="text" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+          <small class="text-red-600" *ngIf="form.controls['nombre'].touched && form.controls['nombre'].invalid">Requerido</small>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Apellido paterno</label>
+          <input formControlName="apellidoPaterno" type="text" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+          <small class="text-red-600" *ngIf="form.controls['apellidoPaterno'].touched && form.controls['apellidoPaterno'].invalid">Requerido</small>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Apellido materno</label>
+          <input formControlName="apellidoMaterno" type="text" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Edad</label>
+          <input formControlName="edad" type="number" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+          <small class="text-red-600" *ngIf="form.controls['edad'].touched && form.controls['edad'].invalid">Valor entre 0 y 120.</small>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">País</label>
+          <input formControlName="pais" type="text" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Correo</label>
+          <input formControlName="correo" type="email" class="mt-1 w-full border border-gray-300 rounded-md p-2 bg-gray-100" readonly />
+          <small class="text-gray-500">Para cambiar el correo, contáctanos.</small>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+          <input formControlName="telefono" type="text" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+          <small class="text-red-600" *ngIf="form.controls['telefono'].touched && form.controls['telefono'].invalid">Requerido.</small>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Contraseña (opcional)</label>
+          <input formControlName="contrasenia" type="password" autocomplete="new-password" class="mt-1 w-full border border-gray-300 rounded-md p-2" />
+          <small class="text-gray-500">Déjala vacía para mantener la actual.</small>
+        </div>
+      </div>
+
+      <div class="pt-2 flex flex-col md:flex-row gap-3">
+        <button type="submit" [disabled]="form.invalid || saving()" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-300">
+          {{ saving() ? 'Guardando...' : 'Guardar cambios' }}
+        </button>
+        <a routerLink="/" class="w-full md:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-300">Eliminar cuenta</a>
+      </div>
+    </form>
+
+    <footer class="pt-8 text-center text-xs text-gray-500">
+      <p>HidroSense 2025 Todos los derechos registrados</p>
+    </footer>
+  </div>
+</div>

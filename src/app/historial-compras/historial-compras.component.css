@@ -1,0 +1,14 @@
+/* Animación suave al abrir ventas */
+:host ::ng-deep .expand {
+  transition: height 0.2s ease;
+}
+
+/* Sombra y hover sutil ya están resueltos con utilidades, opcional agregar: */
+.card {
+  transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+  }

@@ -1,0 +1,116 @@
+<div class="container mx-auto p-6 max-w-6xl">
+  <div class="flex flex-col md:flex-row items-center md:items-center gap-20">
+
+    <!-- Lado izquierdo -->
+    <div class="flex-1 pr-10">
+      <div class="flex items-center gap-2 mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975
+                   m11.963 0a9 9 0 1 0-11.963 0
+                   m11.963 0A8.966 8.966 0 0 1 12 21
+                   a8.966 8.966 0 0 1-5.982-2.275
+                   M15 9.75a3 3 0 1 1-6 0
+                   3 3 0 0 1 6 0Z" />
+        </svg>
+        <h1 class="text-5xl font-extrabold text-gray-800">Registro de cliente</h1>
+      </div>
+
+      <div *ngIf="exitoMsg" class="p-3 rounded-md bg-green-50 text-green-700 border border-green-200 mb-4">
+        {{ exitoMsg }}
+      </div>
+      <div *ngIf="errorMsg" class="p-3 rounded-md bg-red-50 text-red-700 border border-red-200 mb-4">
+        {{ errorMsg }}
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="label">Nombre</label>
+            <input type="text" formControlName="nombre" class="input" />
+            <p *ngIf="hasError('nombre','required')" class="err">El nombre es obligatorio</p>
+            <p *ngIf="hasError('nombre','minlength')" class="err">Mínimo 2 caracteres</p>
+            <p *ngIf="hasError('nombre','pattern')" class="err">Solo letras y espacios</p>
+          </div>
+
+          <div>
+            <label class="label">Apellido paterno</label>
+            <input type="text" formControlName="apellidoPaterno" class="input" />
+            <p *ngIf="hasError('apellidoPaterno','required')" class="err">El apellido es obligatorio</p>
+            <p *ngIf="hasError('apellidoPaterno','minlength')" class="err">Mínimo 2 caracteres</p>
+            <p *ngIf="hasError('apellidoPaterno','pattern')" class="err">Solo letras y espacios</p>
+          </div>
+
+          <div>
+            <label class="label">Apellido materno</label>
+            <input type="text" formControlName="apellidoMaterno" class="input" />
+            <p *ngIf="hasError('apellidoMaterno','pattern')" class="err">Solo letras y espacios</p>
+          </div>
+
+          <div>
+            <label class="label">Edad</label>
+            <input type="number" formControlName="edad" class="input" />
+            <p *ngIf="hasError('edad','required')" class="err">La edad es obligatoria</p>
+            <p *ngIf="hasError('edad','max')" class="err">Debes tener 18 años o menos</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="label">País</label>
+            <select formControlName="pais" class="input">
+              <option value="" disabled>Seleccione un país</option>
+              <option *ngFor="let p of paisesAmerica" [value]="p">{{ p }}</option>
+            </select>
+            <p *ngIf="hasError('pais','required')" class="err">El país es obligatorio</p>
+          </div>
+
+          <div>
+            <label class="label">Teléfono</label>
+            <input type="text" formControlName="telefono" class="input" />
+            <p *ngIf="hasError('telefono','required')" class="err">El teléfono es obligatorio</p>
+            <p *ngIf="hasError('telefono','pattern')" class="err">Solo dígitos (7 a 15)</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="label">Correo</label>
+            <input type="email" formControlName="correo" class="input disabled" />
+          </div>
+
+          <div>
+            <label class="label">Nivel</label>
+            <input type="text" formControlName="nivel" class="input disabled" />
+          </div>
+        </div>
+
+        <div>
+          <label class="label">Contraseña</label>
+          <input type="password" formControlName="contrasenia" class="input" />
+          <p *ngIf="hasError('contrasenia','required')" class="err">La contraseña es obligatoria</p>
+          <p *ngIf="hasError('contrasenia','minlength')" class="err">Mínimo 6 caracteres</p>
+        </div>
+
+        <div class="flex items-center gap-2 mt-2">
+          <input id="acepta" type="checkbox" formControlName="aceptaTerminos" />
+          <label for="acepta">Acepto términos y condiciones</label>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="submit" class="btn-primary"
+                  [disabled]="cargando || form.invalid || !form.get('aceptaTerminos')?.value">
+            {{ cargando ? 'Registrando...' : 'Registrar' }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="flex items-center justify-center w-[500px] h-[500px] rounded-full flex-shrink-0"
+         style="background-color: #c2e7ff;">
+      <img src="/hydrosense.png" alt="Hydrosense" class="w-72 h-72 object-contain">
+    </div>
+
+  </div>
+</div>

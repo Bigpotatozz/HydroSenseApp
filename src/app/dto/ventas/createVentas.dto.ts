@@ -11,19 +11,19 @@ export interface ProductoVentaDTO {
   nombre: string;
   tipo: 'sistema' | 'componente';
   cantidadDisponible: number;
+  precioUnitario?: number;
 }
 
 export interface DetalleVentaForm {
   productoSeleccionado: ProductoVentaDTO | null;
   cantidad: number | null;
   nota?: string;
-  // Propiedad temporal para manejar el stock disponible
   stockActual: number;
 }
 
 export interface VentaDTO {
   idCliente: number | null;
-  fechaVenta: string; // ISO 8601
+  fechaVenta: string;
   detalles: {
     idComponente?: number;
     idSistema?: number;

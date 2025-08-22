@@ -5,63 +5,199 @@
     <div class="form-section">
       <div class="form-group">
         <label for="empresaProveedor">Empresa del proveedor</label>
-        <input type="text" id="empresaProveedor" [(ngModel)]="nombreProveedor" name="nombreProveedor" required
-               pattern="^[a-zA-Z0-9\s]*$"
-               title="Solo se permiten letras, números y espacios." />
+        <input
+          type="text"
+          id="empresaProveedor"
+          [(ngModel)]="nombreProveedor"
+          name="nombreProveedor"
+          required
+          pattern="^[a-zA-Z0-9\\s]*$"
+          title="Solo se permiten letras, números y espacios."
+        />
       </div>
 
       <div class="form-group">
         <label for="nombreContacto">Nombre del contacto</label>
-        <input type="text" id="nombreContacto" [(ngModel)]="nombreContacto" name="nombreContacto" required
-               pattern="^[a-zA-Z\s]*$"
-               title="Solo se permiten letras y espacios." />
+        <input
+          type="text"
+          id="nombreContacto"
+          [(ngModel)]="nombreContacto"
+          name="nombreContacto"
+          required
+          pattern="^[a-zA-Z\\s]*$"
+          title="Solo se permiten letras y espacios."
+        />
       </div>
     </div>
+
+    <h3>Contacto</h3>
+    <div class="form-section">
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          type="text"
+          id="telefono"
+          [(ngModel)]="telefono"
+          name="telefono"
+          required
+          inputmode="numeric"
+          pattern="^[0-9]{7,20}$"
+          minlength="7"
+          maxlength="20"
+          title="Ingresa solo números (7 a 20 dígitos)"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="correo">Email</label>
+        <input
+          type="email"
+          id="correo"
+          [(ngModel)]="correo"
+          name="correo"
+          required
+          title="Ingresa un correo válido"
+        />
+      </div>
+    </div>
+
+    <h3>Dirección</h3>
+    <div class="componentes-list">
+      <div class="component-item">
+        <div class="form-group">
+          <label for="calle">Calle</label>
+          <input type="text" id="calle" [(ngModel)]="calle" name="calle" />
+        </div>
+
+        <div class="form-group">
+          <label for="numero">Número</label>
+          <input
+            type="text"
+            id="numero"
+            [(ngModel)]="numero"
+            name="numero"
+            inputmode="numeric"
+            pattern="^[0-9]{1,10}$"
+            minlength="1"
+            maxlength="10"
+            title="Ingresa solo números (1 a 10 dígitos)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="colonia">Colonia</label>
+          <input type="text" id="colonia" [(ngModel)]="colonia" name="colonia" />
+        </div>
+
+        <div class="form-group">
+          <label for="ciudad">Ciudad</label>
+          <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" />
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <input type="text" id="estado" [(ngModel)]="estado" name="estado" />
+        </div>
+
+        <div class="form-group">
+          <label for="cp">Código Postal</label>
+          <input
+            type="text"
+            id="cp"
+            [(ngModel)]="codigoPostal"
+            name="codigoPostal"
+            pattern="^[0-9A-Za-z\\-]{4,10}$"
+            title="Entre 4 y 10 caracteres"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="pais">País</label>
+          <input type="text" id="pais" [(ngModel)]="pais" name="pais" />
+        </div>
+      </div>
+    </div>
+
+    <datalist id="listaComponentes">
+      <option *ngFor="let n of nombresComponentes" [value]="n"></option>
+    </datalist>
 
     <h3>Componentes</h3>
     <div class="componentes-list">
       <div *ngFor="let componente of componentes; let i = index" class="component-item">
         <div class="form-group">
           <label for="nombreComponente{{i}}">Nombre del componente</label>
-          <input type="text" id="nombreComponente{{i}}" [(ngModel)]="componente.nombreComponente" name="nombreComponente{{i}}" required
-                 pattern="^[a-zA-Z0-9\s]*$"
-                 title="Solo se permiten letras, números y espacios." />
+          <input
+            type="text"
+            id="nombreComponente{{i}}"
+            [(ngModel)]="componente.nombreComponente"
+            name="nombreComponente{{i}}"
+            list="listaComponentes"
+            autocomplete="off"
+            pattern="^[a-zA-Z0-9\\s]*$"
+            title="Selecciona de la lista o escribe uno nuevo"
+            placeholder="Selecciona uno/escribe"
+          />
         </div>
 
         <div class="form-group">
           <label for="descripcion{{i}}">Descripción</label>
-          <input type="text" id="descripcion{{i}}" [(ngModel)]="componente.descripcion" name="descripcion{{i}}" required
-                 pattern="^[a-zA-Z0-9\s.,]*$"
-                 title="Solo se permiten letras, números, espacios y los caracteres especiales . y ," />
+          <input
+            type="text"
+            id="descripcion{{i}}"
+            [(ngModel)]="componente.descripcion"
+            name="descripcion{{i}}"
+            pattern="^[a-zA-Z0-9\\s.,]*$"
+            title="Solo se permiten letras, números, espacios y los caracteres . y ,"
+          />
         </div>
 
         <div class="form-group">
           <label for="precioCompra{{i}}">Precio de compra</label>
-          <input type="number" id="precioCompra{{i}}" [(ngModel)]="componente.precio" name="precioCompra{{i}}" required min="0.01"
-                 title="El precio debe ser mayor a 0." />
+          <input
+            type="number"
+            id="precioCompra{{i}}"
+            [(ngModel)]="componente.precio"
+            name="precioCompra{{i}}"
+            min="0.01"
+            step="0.01"
+            title="El precio debe ser mayor a 0."
+          />
         </div>
 
         <div class="form-group">
           <label for="cantidadIngresada{{i}}">Cantidad ingresada</label>
-          <input type="number" id="cantidadIngresada{{i}}" [(ngModel)]="componente.cantidad" name="cantidadIngresada{{i}}" required min="1" step="1"
-                 title="Solo se permiten números enteros mayores a 0." />
+          <input
+            type="number"
+            id="cantidadIngresada{{i}}"
+            [(ngModel)]="componente.cantidad"
+            name="cantidadIngresada{{i}}"
+            min="1"
+            step="1"
+            title="Solo se permiten números enteros mayores a 0."
+          />
         </div>
 
         <div class="action-buttons">
           <button type="button" (click)="agregarComponente()" class="btn btn-add">
             <i class="fas fa-plus"></i>
           </button>
-          <button type="button" (click)="eliminarComponente(i)" class="btn btn-remove" *ngIf="componentes.length > 1">
+          <button
+            type="button"
+            (click)="eliminarComponente(i)"
+            class="btn btn-remove"
+            *ngIf="componentes.length > 1"
+          >
             <i class="fas fa-minus"></i>
           </button>
         </div>
       </div>
     </div>
 
-    <button type="button" (click)="registrarProveedor()" class="btn btn-primary-submit" [disabled]="!proveedorForm.valid">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
-      </svg>
+    <button
+      type="button"
+      (click)="registrarProveedor()"
+      class="btn btn-primary-submit">
       Guardar
     </button>
   </form>
